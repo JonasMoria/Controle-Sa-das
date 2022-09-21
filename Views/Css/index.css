@@ -1,0 +1,77 @@
+body {
+    background-color: #e6e6e6 !important;
+}
+
+.welcome {
+    width: 80%;
+    margin-top: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+}
+
+.welcome h1 {
+    color: rgb(233, 0, 17);
+}
+
+.welcome h6 {
+    color: black;
+}
+
+.register {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.register a {
+    background-color: rgb(233, 0, 17);
+    color: white;
+    width: 30%;
+    border: none;
+}
+
+.login {
+    width: 80%;
+    margin-top: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 5% 5% 2% 5%;
+
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: gray 2px 2px 2px 2px;
+}
+
+.login h2 {
+    color: rgb(233, 0, 17);
+    text-align: center;
+}
+
+.login label {
+    color: black;
+}
+
+.login input {
+    background-color: transparent !important;
+    border: none;
+    border-bottom: 2px solid rgb(233, 0, 17);
+    border-radius: 0px 5px 5px 0px;
+}
+
+.input-group-text {
+    background-color: aliceblue !important;
+    border: none !important;
+    border-radius: 5px 0px 0px 5px !important;
+}
+
+.button {
+    background-color: rgb(233, 0, 17)!important;
+    color: white!important;
+    margin-top: 3%;
+    width: 40%;
+}
+
+.button:hover {
+   transition: 0.5s;
+   background-color: green!important;
+}

@@ -1,0 +1,26 @@
+body{
+    overflow-x:hidden;
+}
+.pagina-local {
+    margin-left: 43%;
+    margin-right: 43%;
+    width: 14%;
+    font-weight: 700;
+}
+.box-editarDepartamento {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+.box-editarDepartamento label {
+    margin-top: 1%;
+}
+.box-botoesAcao {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+.box-botoesAcao a, .box-botoesAcao button {
+    width: 40%;
+    margin: 4%;
+}

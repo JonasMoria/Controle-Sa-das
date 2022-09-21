@@ -1,0 +1,70 @@
+body {
+    background-color: #e6e6e6 !important;
+}
+
+.welcome {
+    width: 80%;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+}
+
+.welcome h1 {
+    color: rgb(233, 0, 17);
+}
+
+.welcome h6 {
+    color: black;
+}
+
+.register {
+    width: 80%;
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 5% 5% 2% 5%;
+
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: lightsteelblue 2px 2px 2px 2px;
+}
+.img-logo {
+    margin-top: 7%;
+    margin-bottom: 4%;
+    height: 30%;
+    width: 30%;
+}
+.register h2 {
+    color: rgb(233, 0, 17);
+    text-align: center;
+}
+.login {
+    text-align: center;
+    margin-top: 5%;
+}
+.login input {
+    border: 2px solid red;
+}
+.login a {
+    background-color: rgb(233, 0, 17);
+    color: white;
+    width: 30%;
+    border: none;
+}
+
+.form-group{
+    margin-top: 2%;
+}
+
+.button {
+    background-color: rgb(233, 0, 17)!important;
+    color: white!important;
+    margin-top: 3%;
+    width: 40%;
+}
+
+.button:hover {
+    transition: 0.5s;
+    background-color: green!important;
+}
