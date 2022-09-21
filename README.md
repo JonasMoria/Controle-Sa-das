@@ -1,2 +1,3 @@
-# Controle-Sa-das
-Sistema para controlar saídas de um departamento
+# Controle-Saídas
+
+Sistema para controlar saídas e chamados de departamentos em uma empresa
