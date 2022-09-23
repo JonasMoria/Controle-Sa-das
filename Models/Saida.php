@@ -91,7 +91,7 @@ function getObservacao(){
 }
 
 function verificaData($dia,$mes,$ano) {
-    if(checkdate($dia,$mes,$ano)){
+    if(checkdate($mes,$dia,$ano)){
         return true;
     } else {
         throw new Exception('Data Inválida!');
