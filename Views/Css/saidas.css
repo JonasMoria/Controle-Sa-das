@@ -9,7 +9,10 @@
     margin-left: 1%;
 }
 
-.btnFuncoes {
+.bntImprimir {
+    background-color: red;
+}
+.btnFuncoes, .bntImprimir {
     margin-right: 3%;
     font-weight: 500;
     color: white;
@@ -19,8 +22,28 @@
     color: white;
     font-size: 2vh;
 }
+
 .box-msgErro {
     margin-left: 20%;
     margin-right: 20%;
-    width: 60%; 
+    width: 60%;
+}
+
+.box-btnAcoes {
+    display: inline-flex;
+    align-items: center;
+}
+
+.btnAcao {
+    width: 45%;
+    margin-right: 5%;
+}
+
+.table-responsive {
+    text-align: center;
+}
+
+.inputPesquisa {
+    float: right;
+    margin-right: 3%;
 }

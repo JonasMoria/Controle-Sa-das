@@ -18,6 +18,7 @@ if (isset($_SESSION['autorizado']) != true) {
     <link rel="stylesheet" href="../../Content/bootstrap_v5/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Css/saidas.css">
     <script src="../Js/jquery.js"></script>
+    <script src='../Js/saidas.js'></script>
     <script src="../../Content/bootstrap_v5/js/bootstrap.min.js"></script>
 </head>
 
@@ -35,10 +36,26 @@ if (isset($_SESSION['autorizado']) != true) {
         <form action="../../Controllers/DepartamentoController.php" method="POST">
             <div class="col-12 row box-Funcoes">
                 <div class="col-md-2 col-sm-12">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#mdlNovaSaida" class="btn btn-success btnFuncoes btnNovoSetor">NOVA SAÍDA</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#mdlNovaSaida" class="btn btn-success btnFuncoes">NOVA SAÍDA</button>
+                </div>
+                <div class="col-md-1 col-sm-12">
+                    <button type="button" class="btn bntImprimir" onclick="gerarPDF()"><img src="../../Content/icones/imprimir.svg"></button>
                 </div>
                 <div class="col-md-2 col-sm-12">
-                    <button type="button" id="gerarPDFSaida" name="gerarPDFSaida" style="background-color: rgb(233, 0, 17);" class="btn btnFuncoes"><img src="../../Content/icones/imprimir.svg" alt="baixar"> IMPRIMIR</button>
+                    <button type="button" data-bs-toggle="modal" class="btn btn-success"><img src="../../Content/icones/filtrar.svg">  Filtros</button>
+                </div>
+                <div class="col-md-7 col-sm-12">
+                    <div class="row g-3 align-items-center inputPesquisa">
+                        <div class="col-auto">
+                            <label class="col-form-label">PESQUISAR: </label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" name="palavraPesquisar" class="form-control" placeholder="Pesquisar...">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" name="btnPesquisar" class="btn btn-success btnPesquisar"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form><br>
@@ -69,6 +86,32 @@ if (isset($_SESSION['autorizado']) != true) {
             unset($_SESSION['mostrar_erro_saida']);
             ?>
         </div>
+        <!-- Tabela de Saídas -->
+        <section class="table-responsive" id="TabelaSaidas">
+            <div id="cabecalho" style="display: none;">
+                <img src="../Images/imgLogoImprimir.png" alt="imgLogoImprimir">
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">DATA</th>
+                        <th scope="col">DEPT.</th>
+                        <th scope="col">RESP.</th>
+                        <th scope="col">PRODUTO</th>
+                        <th scope="col">OBS</th>
+                        <th scope="col" id="columAcoes">ACÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $id = $_SESSION['dados_usuario'][1];
+                    $listar = new SaidaDB();
+                    $listar->listarSaidas($id);
+                    ?>
+                </tbody>
+            </table>
+        </section>
     </main>
 
 
@@ -126,7 +169,6 @@ if (isset($_SESSION['autorizado']) != true) {
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

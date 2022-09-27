@@ -3,49 +3,94 @@
 require_once(__DIR__ . '../../Saida.php');
 require_once(__DIR__ . '../../Database/ConnectionDB.php');
 
-class SaidaDB {
+class SaidaDB
+{
 
- // Cadastro de Saídas
- function cadastrarSaida(Saida $saida, $id) {
-    
-    $connect = new ConnectionDB();
+    // Cadastro de Saídas
+    function cadastrarSaida(Saida $saida, $id)
+    {
 
-    $dia = mysqli_real_escape_string($connect->connect(), $saida->getDia());
-    $mes = mysqli_real_escape_string($connect->connect(), $saida->getMes());
-    $ano = mysqli_real_escape_string($connect->connect(), $saida->getAno());
-    $departamento = mysqli_real_escape_string($connect->connect(), $saida->getDepartamento());
-    $produto = mysqli_real_escape_string($connect->connect(), $saida->getProduto());
-    $observacao = mysqli_real_escape_string($connect->connect(), $saida->getObservacao());
+        $connect = new ConnectionDB();
 
-    $data = $ano."-".$mes."-".$dia;
-    $query = "insert into saidas(usu_id,sai_data,sai_departamento,sai_produto,sai_observacao) VALUES ($id,'$data','$departamento','$produto','$observacao' )";
-    
-    if (mysqli_query($connect->connect(), $query)) {
-        return true;
-    } else {
-        throw new Exception('Falha ao Cadastrar Saída!!');
+        $dia = mysqli_real_escape_string($connect->connect(), $saida->getDia());
+        $mes = mysqli_real_escape_string($connect->connect(), $saida->getMes());
+        $ano = mysqli_real_escape_string($connect->connect(), $saida->getAno());
+        $departamento = mysqli_real_escape_string($connect->connect(), $saida->getDepartamento());
+        $produto = mysqli_real_escape_string($connect->connect(), $saida->getProduto());
+        $observacao = mysqli_real_escape_string($connect->connect(), $saida->getObservacao());
+
+        $data = $ano . "-" . $mes . "-" . $dia;
+        $query = "insert into saidas(usu_id,sai_data,sai_departamento,sai_produto,sai_observacao) VALUES ($id,'$data','$departamento','$produto','$observacao' )";
+
+        if (mysqli_query($connect->connect(), $query)) {
+            return true;
+        } else {
+            throw new Exception('Falha ao Cadastrar Saída!!');
+        }
     }
-   
- }
 
- //Selecionar Departamento na Modal
- function listarDepartamentos($id){
-    $connect = new ConnectionDB();
-    $query = "select dep_id,dep_nome from departamentos where usu_id = $id order by dep_nome";
-    $result = mysqli_query($connect->connect(), $query);
+    //Selecionar Departamento na Modal
+    function listarDepartamentos($id)
+    {
+        $connect = new ConnectionDB();
+        $query = "select dep_id,dep_nome from departamentos where usu_id = $id order by dep_nome";
+        $result = mysqli_query($connect->connect(), $query);
 
-    $list = mysqli_fetch_assoc($result);
-    $total = mysqli_num_rows($result);
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
 
-    if ($total > 0) {
-        do {
-            $id = $list['dep_id'];
-            $nome = $list['dep_nome'];
-            echo "<option value='$nome'>$nome</option>";
-        } while ($list = mysqli_fetch_assoc($result));
+        if ($total > 0) {
+            do {
+                $id = $list['dep_id'];
+                $nome = $list['dep_nome'];
+                echo "<option value='$nome'>$nome</option>";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
     }
- }
-    
+
+    //Listar Departamentos
+    function listarSaidas($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+
+
+        if ($total > 0) {
+
+            do {
+
+                $Id   =  $list['sai_id'];
+                $data =  $list['sai_data'];
+                $departamento = $list['sai_departamento'];
+                $produto = $list['sai_produto'];
+                $observacao = $list['sai_observacao'];
+
+                // Buscando Responsável pelo departamento
+                $queryResp = "select dep_responsavel from departamentos where dep_nome = '$departamento' and usu_id = $id";
+                $resultado = mysqli_query($connect->connect(), $queryResp);
+                $responsavel = mysqli_fetch_assoc($resultado);
+                $responsavel = $responsavel['dep_responsavel'];
+
+                    echo " <tr>
+            <th scope='row'>$Id</th>
+            <td>$data</td>
+            <td>$departamento</td>
+            <td>$responsavel</td>
+            <td>$produto</td>
+            <td>$observacao</td>
+            <td class='col-12 row ocultarImprimir'>
+                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+            </td>
+            </tr>
+        ";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
 }
-
-?>
