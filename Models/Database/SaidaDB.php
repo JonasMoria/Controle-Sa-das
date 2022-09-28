@@ -48,12 +48,12 @@ class SaidaDB
         }
     }
 
-    //Listar Departamentos
+    //Listar Saidas
     function listarSaidas($id)
     {
 
         $connect = new ConnectionDB();
-        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id";
+        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_data desc";
         $result = mysqli_query($connect->connect(), $query);
 
         $list = mysqli_fetch_assoc($result);
@@ -78,19 +78,19 @@ class SaidaDB
                 $responsavel = $responsavel['dep_responsavel'];
 
                     echo " <tr>
-            <th scope='row'>$Id</th>
-            <td>$data</td>
-            <td>$departamento</td>
-            <td>$responsavel</td>
-            <td>$produto</td>
-            <td>$observacao</td>
-            <td class='col-12 row ocultarImprimir'>
-                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
-            </td>
-            </tr>
-        ";
+                            <th scope='row'>$Id</th>
+                            <td>$data</td>
+                            <td>$departamento</td>
+                            <td>$responsavel</td>
+                            <td>$produto</td>
+                            <td>$observacao</td>
+                            <td class='col-12 row ocultarImprimir'>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                            </td>
+                            </tr>";
             } while ($list = mysqli_fetch_assoc($result));
         }
     }
+
 }

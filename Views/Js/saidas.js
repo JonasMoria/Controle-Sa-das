@@ -3,7 +3,7 @@ function gerarPDF() {
     var win = window.open('', '', 'height=900,width=900');
     var html = '<html>' +
       '<head>' +
-      '<title>Controle Saídas | Imprimir Setores</title>' +
+      '<title>Controle Saídas | Imprimir Saídas</title>' +
       '<style>' +
       'table {width: 100%;font: 10px Arial;}#columAcoes {display: none;}' +
       '#cabecalho{width: 80%;margin-left: 10%;margin-right: 10%;text-align: center;display: block}.ocultarImprimir {display: none;}' +

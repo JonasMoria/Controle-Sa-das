@@ -29,36 +29,23 @@ if (isset($_SESSION['autorizado']) != true) {
     </nav>
 
     <main class="page">
+
         <div class="col-12">
             <h3 class="pagina-local">Saídas</h3>
         </div>
         <hr>
-        <form action="../../Controllers/DepartamentoController.php" method="POST">
-            <div class="col-12 row box-Funcoes">
-                <div class="col-md-2 col-sm-12">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#mdlNovaSaida" class="btn btn-success btnFuncoes">NOVA SAÍDA</button>
-                </div>
-                <div class="col-md-1 col-sm-12">
-                    <button type="button" class="btn bntImprimir" onclick="gerarPDF()"><img src="../../Content/icones/imprimir.svg"></button>
-                </div>
-                <div class="col-md-2 col-sm-12">
-                    <button type="button" data-bs-toggle="modal" class="btn btn-success"><img src="../../Content/icones/filtrar.svg">  Filtros</button>
-                </div>
-                <div class="col-md-7 col-sm-12">
-                    <div class="row g-3 align-items-center inputPesquisa">
-                        <div class="col-auto">
-                            <label class="col-form-label">PESQUISAR: </label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" name="palavraPesquisar" class="form-control" placeholder="Pesquisar...">
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" name="btnPesquisar" class="btn btn-success btnPesquisar"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
-                        </div>
-                    </div>
-                </div>
+
+        <div class="col-12 row mb-3">
+            <div class="col-md-6 col-sm-12 box-funcoes-1">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#mdlNovaSaida" class="btn btn-success btnFuncoes">NOVA SAÍDA</button>
+                <button type="button" class="btn bntImprimir" onclick="gerarPDF()"><img src="../../Content/icones/imprimir.svg"></button>
             </div>
-        </form><br>
+            <div class="col-md-6 col-sm-12 box-funcoes-2">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#modalFiltros" class="btn btn-success"><img src="../../Content/icones/filtrar.svg"> Filtros</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#modalPesquisas" class="btn btn-success"><img src="../../Content/icones/pesquisar.svg"> Pesquisas</button>
+            </div>
+        </div>
+
         <div class="col-12 row box-msgErro">
             <?php
             if (isset($_SESSION['saida_cadastrada'])) {
@@ -107,13 +94,142 @@ if (isset($_SESSION['autorizado']) != true) {
                     <?php
                     $id = $_SESSION['dados_usuario'][1];
                     $listar = new SaidaDB();
+
                     $listar->listarSaidas($id);
+
+                    unset($_SESSION['pesquisar_saida']);
                     ?>
                 </tbody>
             </table>
         </section>
     </main>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modalPesquisas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Pesquisar Por:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Pesquisa por ID -->
+                    <div class="form-group col-12 row">
+                        <div class="col-9">
+                            <input type="number" class="form-control" placeholder="ID">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Pesquisa por Data -->
+                    <div class="form-group col-12 row">
+                        <div class="col-9 row">
+                            <div class="form-group row">
+                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="31" placeholder="Dia" required> </div>
+                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="12" placeholder="Mês" required> </div>
+                                <div class="col-4"> <input type="number" class="form-control" name="" min="1900" placeholder="Ano" required> </div>
+                            </div>
+                        </div>
+                        <div class="col-3 text-center">
+                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Pesquisa por Departamento -->
+                    <div class="form-group col-12 row">
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Setor">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Pesquisa por Responsável -->
+                    <div class="form-group col-12 row">
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Responsável">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Pesquisa por Produto -->
+                    <div class="form-group col-12 row">
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Produto">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- Pesquisa por Observação -->
+                    <div class="form-group col-12 row">
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Observação">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Filtros -->
+    <div class="modal fade" id="modalFiltros" tabindex="-1" aria-labelledby="modalFiltros" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="../../Controllers/SaidaController.php" method="post" style="width:90%;margin-left:5%;margin-right:5%;text-align:center">
+                        <section class="col-12 row box-filtar-data">
+                            <div class="form-group col-12 row">
+                                <h5 class="modal-title mb-3">Filtrar:</h5>
+                                <div class="col-3">
+                                    <h6 class="btn">De:</h6>
+                                </div>
+                                <div class="col-3"> <input type="number" class="form-control" name="saida_dia_pesq_min" min="1" max="31" placeholder="Dia" required> </div>
+                                <div class="col-3"> <input type="number" class="form-control" name="saida_mes_pesq_min" min="1" max="12" placeholder="Mês" required> </div>
+                                <div class="col-3"> <input type="number" class="form-control" name="saida_ano_pesq_min" min="1900" placeholder="Ano" required> </div>
+                            </div>
+                            <div class="form-group col-12 row">
+                                <div class="col-3">
+                                    <h6 class="btn">Até:</h6>
+                                </div>
+                                <div class="col-3"> <input type="number" class="form-control" name="saida_dia_pesq_max" min="1" max="31" placeholder="Dia" required> </div>
+                                <div class="col-3"> <input type="number" class="form-control" name="saida_mes_pesq_max" min="1" max="12" placeholder="Mês" required> </div>
+                                <div class="col-3"> <input type="number" class="form-control" name="saida_ano_pesq_max  " min="1900" placeholder="Ano" required> </div>
+                            </div>
+                            <div class="col-12 text-center mt-4">
+                                <button class="btn btn-sm btn-success"> <img src="../../Content/icones/calendario.svg" alt="calendario"> filtrar por data</button>
+                            </div>
+                        </section>
+                        <h5 class="modal-title mt-4">Ordenar Por:</h5>
+                        <section class="col-12 mt-3 row">
+                            <div class="col-4">
+                                <button class="btn btn-success btn-sm"><img src="../../Content/icones/recente.svg">Antigo</button>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-success btn-sm"> <img src="../../Content/icones/antigo.svg" alt="antigo">Recente</button>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-success btn-sm"> <img src="../../Content/icones/alfabetica.svg" alt="alfabética"> Alfabética</button>
+                            </div>
+                        </section>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Modal Nova Saída -->
     <div class="modal fade" id="mdlNovaSaida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

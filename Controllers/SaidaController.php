@@ -41,7 +41,5 @@ if (isset($_POST['salvar_saida'])) {
         $_SESSION['mostrar_erro_saida'] = $erro;
         exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
     }
-
 }
 
-?>
