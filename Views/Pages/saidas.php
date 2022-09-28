@@ -1,11 +1,13 @@
 <?php
-session_start();
-require_once(__DIR__ . '../../../Models/Database/SaidaDB.php');
+require_once(__DIR__ . '../../../Controllers/SaidaController.php');
 
 if (isset($_SESSION['autorizado']) != true) {
     header('Location: /controlesaidas/index.php');
     exit(session_destroy());
 }
+if(!isset($_SESSION)) { 
+    session_start(); 
+} 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -92,19 +94,14 @@ if (isset($_SESSION['autorizado']) != true) {
                 </thead>
                 <tbody>
                     <?php
-                    $id = $_SESSION['dados_usuario'][1];
-                    $listar = new SaidaDB();
-
-                    $listar->listarSaidas($id);
-
-                    unset($_SESSION['pesquisar_saida']);
+                     loadTable();
                     ?>
                 </tbody>
             </table>
         </section>
     </main>
 
-    <!-- Modal -->
+    <!-- Modal Pesquisas -->
     <div class="modal fade" id="modalPesquisas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -127,9 +124,9 @@ if (isset($_SESSION['autorizado']) != true) {
                     <div class="form-group col-12 row">
                         <div class="col-9 row">
                             <div class="form-group row">
-                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="31" placeholder="Dia" required> </div>
-                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="12" placeholder="Mês" required> </div>
-                                <div class="col-4"> <input type="number" class="form-control" name="" min="1900" placeholder="Ano" required> </div>
+                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="31" placeholder="Dia"> </div>
+                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="12" placeholder="Mês"> </div>
+                                <div class="col-4"> <input type="number" class="form-control" name="" min="1900" placeholder="Ano"> </div>
                             </div>
                         </div>
                         <div class="col-3 text-center">
@@ -207,26 +204,28 @@ if (isset($_SESSION['autorizado']) != true) {
                                 </div>
                                 <div class="col-3"> <input type="number" class="form-control" name="saida_dia_pesq_max" min="1" max="31" placeholder="Dia" required> </div>
                                 <div class="col-3"> <input type="number" class="form-control" name="saida_mes_pesq_max" min="1" max="12" placeholder="Mês" required> </div>
-                                <div class="col-3"> <input type="number" class="form-control" name="saida_ano_pesq_max  " min="1900" placeholder="Ano" required> </div>
+                                <div class="col-3"> <input type="number" class="form-control" name="saida_ano_pesq_max" min="1900" placeholder="Ano" required> </div>
                             </div>
                             <div class="col-12 text-center mt-4">
-                                <button class="btn btn-sm btn-success"> <img src="../../Content/icones/calendario.svg" alt="calendario"> filtrar por data</button>
+                                <button type="submit" name="filtrar_entre_datas" class="btn btn-sm btn-success"> <img src="../../Content/icones/calendario.svg" alt="calendario"> filtrar por data</button>
                             </div>
                         </section>
-                        <h5 class="modal-title mt-4">Ordenar Por:</h5>
+                    </form>
+                    <h5 class="modal-title mt-4">Ordenar Por:</h5>
+                    <form action="../../Controllers/SaidaController.php" method="post">
                         <section class="col-12 mt-3 row">
                             <div class="col-4">
-                                <button class="btn btn-success btn-sm"><img src="../../Content/icones/recente.svg">Antigo</button>
+                                <button class="btn btn-success btn-sm" name="orderna_crescente"><img src="../../Content/icones/recente.svg">Antigo</button>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success btn-sm"> <img src="../../Content/icones/antigo.svg" alt="antigo">Recente</button>
+                                <button class="btn btn-success btn-sm" name="orderna_decrescente"> <img src="../../Content/icones/antigo.svg" alt="antigo">Recente</button>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success btn-sm"> <img src="../../Content/icones/alfabetica.svg" alt="alfabética"> Alfabética</button>
+                                <button class="btn btn-success btn-sm" name="orderna_alfabeto"> <img src="../../Content/icones/alfabetica.svg" alt="alfabética"> Alfabética</button>
                             </div>
                         </section>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>
