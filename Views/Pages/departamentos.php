@@ -35,11 +35,9 @@ if (isset($_SESSION['autorizado']) != true) {
         <hr>
         <form action="../../Controllers/DepartamentoController.php" method="POST">
             <div class="col-12 row box-Funcoes">
-                <div class="col-md-2 col-sm-12">
+                <div class="col-md-4 col-sm-12">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#mdlNovoDepartamento" class="btn btn-success btnFuncoes btnNovoSetor">NOVO SETOR</button>
-                </div>
-                <div class="col-md-2 col-sm-12">
-                    <button type="button" id="gerarPDFDep" name="gerarPDFDep" onclick="gerarPDF()" style="background-color: rgb(233, 0, 17);" class="btn btnFuncoes"><img src="../../Content/icones/imprimir.svg" alt="baixar"> IMPRIMIR</button>
+                    <button type="button" id="gerarPDFDep" name="gerarPDFDep" onclick="gerarPDF()" style="background-color: rgb(233, 0, 17);" class="btn btnFuncoes"><img src="../../Content/icones/imprimir.svg" alt="baixar"></button>
                 </div>
 
                 <div class="col-md-8 col-sm-12">
