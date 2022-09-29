@@ -59,8 +59,6 @@ class SaidaDB
         $list = mysqli_fetch_assoc($result);
         $total = mysqli_num_rows($result);
 
-
-
         if ($total > 0) {
 
             do {
@@ -83,7 +81,7 @@ class SaidaDB
                             <td>$departamento</td>
                             <td>$responsavel</td>
                             <td>$produto</td>
-                            <td>$observacao</td>
+                            <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
                                 <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
                                 <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
@@ -104,8 +102,6 @@ class SaidaDB
         $list = mysqli_fetch_assoc($result);
         $total = mysqli_num_rows($result);
 
-
-
         if ($total > 0) {
 
             do {
@@ -128,7 +124,7 @@ class SaidaDB
                             <td>$departamento</td>
                             <td>$responsavel</td>
                             <td>$produto</td>
-                            <td>$observacao</td>
+                            <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
                                 <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
                                 <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
@@ -151,8 +147,6 @@ class SaidaDB
         $list = mysqli_fetch_assoc($result);
         $total = mysqli_num_rows($result);
 
-
-
         if ($total > 0) {
 
             do {
@@ -175,7 +169,7 @@ class SaidaDB
                             <td>$departamento</td>
                             <td>$responsavel</td>
                             <td>$produto</td>
-                            <td>$observacao</td>
+                            <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
                                 <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
                                 <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
@@ -196,7 +190,48 @@ class SaidaDB
         $list = mysqli_fetch_assoc($result);
         $total = mysqli_num_rows($result);
 
+        if ($total > 0) {
 
+            do {
+
+                $Id   =  $list['sai_id'];
+                $data =  $list['sai_data'];
+                $departamento = $list['sai_departamento'];
+                $produto = $list['sai_produto'];
+                $observacao = $list['sai_observacao'];
+
+                // Buscando Responsável pelo departamento
+                $queryResp = "select dep_responsavel from departamentos where dep_nome = '$departamento' and usu_id = $id";
+                $resultado = mysqli_query($connect->connect(), $queryResp);
+                $responsavel = mysqli_fetch_assoc($resultado);
+                $responsavel = $responsavel['dep_responsavel'];
+
+                echo " <tr>
+                            <th scope='row'>$Id</th>
+                            <td>$data</td>
+                            <td>$departamento</td>
+                            <td>$responsavel</td>
+                            <td>$produto</td>
+                            <td class='table-observacao'>$observacao</td>
+                            <td class='col-12 row ocultarImprimir'>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                            </td>
+                            </tr>";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
+
+    // Ordenar Em Ordem Crescente
+    function ordenaAlfabetico($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_departamento asc";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
 
         if ($total > 0) {
 
@@ -220,7 +255,7 @@ class SaidaDB
                             <td>$departamento</td>
                             <td>$responsavel</td>
                             <td>$produto</td>
-                            <td>$observacao</td>
+                            <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
                                 <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
                                 <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
@@ -230,42 +265,240 @@ class SaidaDB
         }
     }
 
-        // Ordenar Em Ordem Crescente
-        function ordenaAlfabetico($id)
-        {
-    
+    //Pesquisa Por ID
+    function pesquisaID($id, $idSaida)
+    {
+        try {
             $connect = new ConnectionDB();
-            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_departamento asc";
+            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_id = $idSaida";
             $result = mysqli_query($connect->connect(), $query);
-    
+
             $list = mysqli_fetch_assoc($result);
             $total = mysqli_num_rows($result);
-    
-    
-    
+
             if ($total > 0) {
-    
+
                 do {
-    
+
                     $Id   =  $list['sai_id'];
                     $data =  $list['sai_data'];
                     $departamento = $list['sai_departamento'];
                     $produto = $list['sai_produto'];
                     $observacao = $list['sai_observacao'];
-    
+
                     // Buscando Responsável pelo departamento
                     $queryResp = "select dep_responsavel from departamentos where dep_nome = '$departamento' and usu_id = $id";
                     $resultado = mysqli_query($connect->connect(), $queryResp);
                     $responsavel = mysqli_fetch_assoc($resultado);
                     $responsavel = $responsavel['dep_responsavel'];
-    
+
+                    echo " <tr>
+                            <th scope='row'>$Id</th>
+                            <td>$data</td>
+                            <td>$departamento</td>
+                            <td>$responsavel</td>
+                            <td>$produto</td>
+                            <td class='table-observacao'>$observacao</td>
+                            <td class='col-12 row ocultarImprimir'>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                            </td>
+                            </tr>";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>ID Informado Incorretamente</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+        }
+    }
+
+    //Pesquisa Por Data
+    function pesquisaData($id, $dataSaida)
+    {
+        try {
+
+            $connect = new ConnectionDB();
+            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_data = '$dataSaida'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   =  $list['sai_id'];
+                    $data =  $list['sai_data'];
+                    $departamento = $list['sai_departamento'];
+                    $produto = $list['sai_produto'];
+                    $observacao = $list['sai_observacao'];
+
+                    // Buscando Responsável pelo departamento
+                    $queryResp = "select dep_responsavel from departamentos where dep_nome = '$departamento' and usu_id = $id";
+                    $resultado = mysqli_query($connect->connect(), $queryResp);
+                    $responsavel = mysqli_fetch_assoc($resultado);
+                    $responsavel = $responsavel['dep_responsavel'];
+
+                    echo " <tr>
+                            <th scope='row'>$Id</th>
+                            <td>$data</td>
+                            <td>$departamento</td>
+                            <td>$responsavel</td>
+                            <td>$produto</td>
+                            <td class='table-observacao'>$observacao</td>
+                            <td class='col-12 row ocultarImprimir'>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                            </td>
+                            </tr>";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>Data Informada Incorretamente</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+        }
+    }
+
+    //Pesquisa Por Departamento
+    function pesquisaDepartamento($id, $departamento)
+    {
+        try {
+
+            $connect = new ConnectionDB();
+            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_departamento = '$departamento'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   =  $list['sai_id'];
+                    $data =  $list['sai_data'];
+                    $departamento = $list['sai_departamento'];
+                    $produto = $list['sai_produto'];
+                    $observacao = $list['sai_observacao'];
+
+                    // Buscando Responsável pelo departamento
+                    $queryResp = "select dep_responsavel from departamentos where dep_nome = '$departamento' and usu_id = $id";
+                    $resultado = mysqli_query($connect->connect(), $queryResp);
+                    $responsavel = mysqli_fetch_assoc($resultado);
+                    $responsavel = $responsavel['dep_responsavel'];
+
+                    echo " <tr>
+                            <th scope='row'>$Id</th>
+                            <td>$data</td>
+                            <td>$departamento</td>
+                            <td>$responsavel</td>
+                            <td>$produto</td>
+                            <td class='table-observacao'>$observacao</td>
+                            <td class='col-12 row ocultarImprimir'>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                            </td>
+                            </tr>";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>Setor Informado Incorretamente</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+        }
+    }
+
+    //Pesquisa Por Produto
+    function pesquisaProduto($id, $produto)
+    {
+        try {
+            $connect = new ConnectionDB();
+            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as 
+            sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_produto like '%$produto%'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   =  $list['sai_id'];
+                    $data =  $list['sai_data'];
+                    $departamento = $list['sai_departamento'];
+                    $produto = $list['sai_produto'];
+                    $observacao = $list['sai_observacao'];
+
+                    // Buscando Responsável pelo departamento
+                    $queryResp = "select dep_responsavel from departamentos where dep_nome = '$departamento' and usu_id = $id";
+                    $resultado = mysqli_query($connect->connect(), $queryResp);
+                    $responsavel = mysqli_fetch_assoc($resultado);
+                    $responsavel = $responsavel['dep_responsavel'];
+
+                    echo " <tr>
+                            <th scope='row'>$Id</th>
+                            <td>$data</td>
+                            <td>$departamento</td>
+                            <td>$responsavel</td>
+                            <td>$produto</td>
+                            <td class='table-observacao'>$observacao</td>
+                            <td class='col-12 row ocultarImprimir'>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                            </td>
+                            </tr>";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>Setor Informado Incorretamente</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+        }
+    }
+
+    //Pesquisa Por Produto
+    function pesquisaObservacao($id, $observacao)
+    {
+        try {
+            $connect = new ConnectionDB();
+            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as 
+            sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_produto like '%$observacao%'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   =  $list['sai_id'];
+                    $data =  $list['sai_data'];
+                    $departamento = $list['sai_departamento'];
+                    $produto = $list['sai_produto'];
+                    $observacao = $list['sai_observacao'];
+
+                    // Buscando Responsável pelo departamento
+                    $queryResp = "select dep_responsavel from departamentos where dep_nome = '$departamento' and usu_id = $id";
+                    $resultado = mysqli_query($connect->connect(), $queryResp);
+                    $responsavel = mysqli_fetch_assoc($resultado);
+                    $responsavel = $responsavel['dep_responsavel'];
+
                     echo " <tr>
                                 <th scope='row'>$Id</th>
                                 <td>$data</td>
                                 <td>$departamento</td>
                                 <td>$responsavel</td>
                                 <td>$produto</td>
-                                <td>$observacao</td>
+                                <td class='table-observacao'>$observacao</td>
                                 <td class='col-12 row ocultarImprimir'>
                                     <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
                                     <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
@@ -273,5 +506,11 @@ class SaidaDB
                                 </tr>";
                 } while ($list = mysqli_fetch_assoc($result));
             }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>Setor Informado Incorretamente</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
         }
+    }
 }

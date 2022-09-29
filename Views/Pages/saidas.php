@@ -5,9 +5,9 @@ if (isset($_SESSION['autorizado']) != true) {
     header('Location: /controlesaidas/index.php');
     exit(session_destroy());
 }
-if(!isset($_SESSION)) { 
-    session_start(); 
-} 
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -94,7 +94,7 @@ if(!isset($_SESSION)) {
                 </thead>
                 <tbody>
                     <?php
-                     loadTable();
+                    loadTable();
                     ?>
                 </tbody>
             </table>
@@ -110,71 +110,62 @@ if(!isset($_SESSION)) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Pesquisa por ID -->
-                    <div class="form-group col-12 row">
-                        <div class="col-9">
-                            <input type="number" class="form-control" placeholder="ID">
-                        </div>
-                        <div class="col-3">
-                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
-                        </div>
-                    </div>
-                    <hr>
-                    <!-- Pesquisa por Data -->
-                    <div class="form-group col-12 row">
-                        <div class="col-9 row">
-                            <div class="form-group row">
-                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="31" placeholder="Dia"> </div>
-                                <div class="col-4"> <input type="number" class="form-control" name="" min="1" max="12" placeholder="Mês"> </div>
-                                <div class="col-4"> <input type="number" class="form-control" name="" min="1900" placeholder="Ano"> </div>
+                    <form action="../../Controllers/SaidaController.php" method="post">
+                        <!-- Pesquisa por ID -->
+                        <div class="form-group col-12 row">
+                            <div class="col-9">
+                                <input type="number" name="pesquisa_id" class="form-control" placeholder="ID">
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-success" name="pesquisa_por_id"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
                             </div>
                         </div>
-                        <div class="col-3 text-center">
-                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        <hr>
+                        <!-- Pesquisa por Data -->
+                        <div class="form-group col-12 row">
+                            <div class="col-9 row">
+                                <div class="form-group row">
+                                    <div class="col-4"> <input type="number" class="form-control" name="pesquisa_dia" min="1" max="31" placeholder="Dia"> </div>
+                                    <div class="col-4"> <input type="number" class="form-control" name="pesquisa_mes" min="1" max="12" placeholder="Mês"> </div>
+                                    <div class="col-4"> <input type="number" class="form-control" name="pesquisa_ano" min="1900" placeholder="Ano"> </div>
+                                </div>
+                            </div>
+                            <div class="col-3 text-center">
+                                <button class="btn btn-success" name="pesquisa_por_data"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <!-- Pesquisa por Departamento -->
-                    <div class="form-group col-12 row">
-                        <div class="col-9">
-                            <input type="text" class="form-control" placeholder="Setor">
+                        <hr>
+                        <!-- Pesquisa por Departamento -->
+                        <div class="form-group col-12 row">
+                            <div class="col-9">
+                                <input type="text" class="form-control" name="pesquisa_departamento" placeholder="Setor">
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-success" name="pesquisa_por_departamento"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                        <hr>
+                        <!-- Pesquisa por Produto -->
+                        <div class="form-group col-12 row">
+                            <div class="col-9">
+                                <input type="text" class="form-control" name="pesquisa_produto" placeholder="Produto">
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-success" name="pesquisa_por_produto"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <!-- Pesquisa por Responsável -->
-                    <div class="form-group col-12 row">
-                        <div class="col-9">
-                            <input type="text" class="form-control" placeholder="Responsável">
+                        <hr>
+                        <!-- Pesquisa por Observação -->
+                        <div class="form-group col-12 row">
+                            <div class="col-9">
+                                <input type="text" class="form-control" name="pesquisa_observacao" placeholder="Observação">
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-success" name="pesquisa_por_observacao" ><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                            </div>
                         </div>
-                        <div class="col-3">
-                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
-                        </div>
-                    </div>
-                    <hr>
-                    <!-- Pesquisa por Produto -->
-                    <div class="form-group col-12 row">
-                        <div class="col-9">
-                            <input type="text" class="form-control" placeholder="Produto">
-                        </div>
-                        <div class="col-3">
-                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
-                        </div>
-                    </div>
-                    <hr>
-                    <!-- Pesquisa por Observação -->
-                    <div class="form-group col-12 row">
-                        <div class="col-9">
-                            <input type="text" class="form-control" placeholder="Observação">
-                        </div>
-                        <div class="col-3">
-                            <button class="btn btn-success"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>
@@ -211,9 +202,9 @@ if(!isset($_SESSION)) {
                             </div>
                         </section>
                     </form>
-                    <h5 class="modal-title mt-4">Ordenar Por:</h5>
+                    <h5 class="modal-title text-center mt-4">Ordenar Por:</h5>
                     <form action="../../Controllers/SaidaController.php" method="post">
-                        <section class="col-12 mt-3 row">
+                        <section class="col-12 mt-3 text-center row">
                             <div class="col-4">
                                 <button class="btn btn-success btn-sm" name="orderna_crescente"><img src="../../Content/icones/recente.svg">Antigo</button>
                             </div>

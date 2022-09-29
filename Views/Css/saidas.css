@@ -48,7 +48,10 @@
 .table-responsive {
     text-align: center;
 }
-
+.table-observacao {
+    width: 300px;
+    height: 10px;
+}
 .inputPesquisa {
     float: right;
     margin-right: 3%;
@@ -70,5 +73,12 @@
     .box-funcoes-2 button {
         float: left;
         margin-top: 2%;
+    }
+    .table-observacao {
+        
+
+        overflow-wrap: normal;  
+        word-wrap: normal; 
+        word-break: normal;
     }
 }

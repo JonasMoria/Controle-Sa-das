@@ -85,7 +85,45 @@ if (isset($_POST['orderna_alfabeto'])) {
     exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
 }
 
+// Pesquisar Por ID
+if (isset($_POST['pesquisa_por_id'])) {
+    $id_pesquisa = $_POST['pesquisa_id'];
+    $_SESSION['pesquisa_por_id'] = [true, $id_pesquisa];
+    exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
+}
 
+// Pesquisar Por Data Específica
+if (isset($_POST['pesquisa_por_data'])) {
+
+    $dia = $_POST['pesquisa_dia'];
+    $mes = $_POST['pesquisa_mes'];
+    $ano = $_POST['pesquisa_ano'];
+
+    $data = $ano . '-' . $mes . '-' . $dia;
+    $_SESSION['pesquisa_por_data'] = [true, $data];
+    exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
+}
+
+// Pesquisar Por Departamento
+if (isset($_POST['pesquisa_por_departamento'])) {
+    $departamento = $_POST['pesquisa_departamento'];
+    $_SESSION['pesquisa_por_departamento'] = [true, $departamento];
+    exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
+}
+
+// Pesquisar Por Produto
+if (isset($_POST['pesquisa_por_produto'])) {
+    $produto = $_POST['pesquisa_produto'];
+    $_SESSION['pesquisa_por_produto'] = [true, $produto];
+    exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
+}
+
+// Pesquisar Por Observação
+if (isset($_POST['pesquisa_por_observacao'])) {
+    $produto = $_POST['pesquisa_observacao'];
+    $_SESSION['pesquisa_por_observacao'] = [true, $produto];
+    exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
+}
 
 function loadTable()
 {
@@ -93,22 +131,40 @@ function loadTable()
     $listar = new SaidaDB();
 
     if (isset($_SESSION['dados_filtro_datas'])) {
-        try {
-            $data1 =  $_SESSION['dados_filtro_datas'][1];
-            $data2 =  $_SESSION['dados_filtro_datas'][2];
-            $listar->filtrarDatas($data1, $data2, $id);
-        } catch (Exception $erro) {
-            echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-            <strong>" . $erro->getMessage() . "</strong>
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-           </div>";
-        }
+
+        $data1 =  $_SESSION['dados_filtro_datas'][1];
+        $data2 =  $_SESSION['dados_filtro_datas'][2];
+        $listar->filtrarDatas($data1, $data2, $id);
+        
     } else if (isset($_SESSION['orderna_crescente'])) {
+
         $listar->ordenaCrescente($id);
     } else if (isset($_SESSION['orderna_decrescente'])) {
+
         $listar->ordenaDecrescente($id);
     } else if (isset($_SESSION['orderna_alfabeto'])) {
+
         $listar->ordenaAlfabetico($id);
+    } else if (isset($_SESSION['pesquisa_por_id'])) {
+
+        $idSaida = $_SESSION['pesquisa_por_id'][1];
+        $listar->pesquisaID($id, $idSaida);
+    } else if (isset($_SESSION['pesquisa_por_data'])) {
+
+        $data = $_SESSION['pesquisa_por_data'][1];
+        $listar->pesquisaData($id, $data);
+    } else if (isset($_SESSION['pesquisa_por_departamento'])) {
+
+        $departamento = $_SESSION['pesquisa_por_departamento'][1];
+        $listar->pesquisaDepartamento($id, $departamento);
+    } else if (isset($_SESSION['pesquisa_por_produto'])) {
+
+        $produto = $_SESSION['pesquisa_por_produto'][1];
+        $listar->pesquisaProduto($id, $produto);
+    } else if (isset($_SESSION['pesquisa_por_observacao'])) {
+
+        $obs = $_SESSION['pesquisa_por_observacao'][1];
+        $listar->pesquisaObservacao($id, $obs);
     } else {
         $listar->listarSaidas($id);
     }
@@ -117,4 +173,9 @@ function loadTable()
     unset($_SESSION['orderna_decrescente']);
     unset($_SESSION['orderna_alfabeto']);
     unset($_SESSION['dados_filtro_datas']);
+    unset($_SESSION['pesquisa_por_id']);
+    unset($_SESSION['pesquisa_por_data']);
+    unset($_SESSION['pesquisa_por_departamento']);
+    unset($_SESSION['pesquisa_por_produto']);
+    unset($_SESSION['pesquisa_por_observacao']);
 }
