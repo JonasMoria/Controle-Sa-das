@@ -135,7 +135,6 @@ function loadTable()
         $data1 =  $_SESSION['dados_filtro_datas'][1];
         $data2 =  $_SESSION['dados_filtro_datas'][2];
         $listar->filtrarDatas($data1, $data2, $id);
-        
     } else if (isset($_SESSION['orderna_crescente'])) {
 
         $listar->ordenaCrescente($id);
@@ -178,4 +177,61 @@ function loadTable()
     unset($_SESSION['pesquisa_por_departamento']);
     unset($_SESSION['pesquisa_por_produto']);
     unset($_SESSION['pesquisa_por_observacao']);
+}
+
+// Mostrar id Para Editar Saida
+if (isset($_GET['editar'])) {
+    $_SESSION['getIdDep'] = $_GET['editar'];
+    header('Location: /controlesaidas/Views/pages/editarSaidas.php');
+    exit;
+}
+
+//Atualiza Dados Saída
+if (isset($_POST['editar_confirm'])) {
+
+    try {
+
+        $saida = new Saida();
+        $saidaDB = new SaidaDB();
+
+        $id = $_SESSION['dados_usuario'][1];
+
+        $dia = $_POST['saida_diaE'];
+        $mes = $_POST['saida_mesE'];
+        $ano = $_POST['saida_anoE'];
+
+        if ($saida->verificaData($dia, $mes, $ano)) {
+            $saida->setDia($dia);
+            $saida->setMes($mes);
+            $saida->setAno($ano);
+        } else {
+            $_SESSION['saida_status'] = [false, 'Data Inválida, Tente Novamente'];
+        }
+        $saida->setDepartamento($_POST['saida_departamentoE']);
+        $saida->setProduto($_POST['saida_produtoE']);
+        $saida->setObservacao($_POST['saida_observacaoE']);
+        
+        // echo $saida->getDia();
+        // echo $saida->getmes();
+        // echo $saida->getAno();
+        // echo $saida->getDepartamento();
+        // echo $saida->getProduto();
+        // echo $saida->getObservacao();
+
+        if ($saidaDB->alterarSaida($saida, $_SESSION['getIdDep'])) {
+
+            $_SESSION['saida_status'] = [true, 'Saída Alterada Com Sucesso!!'];
+            header('Location: /controlesaidas/Views/pages/editarSaidas.php');
+            exit;
+        } else {
+
+            $_SESSION['saida_status'] = [false, 'Não Foi Possivel Alterar Os Dados, Tente Novamente'];
+            header('Location: /controlesaidas/Views/pages/editarSaidas.php');
+            exit;
+        }
+    } catch (Exception $erro) {
+        $_SESSION['saida_status'] = [false, $erro->getMessage()];
+        header('Location: /controlesaidas/Views/pages/editarSaidas.php');
+        exit;
+    }
 }

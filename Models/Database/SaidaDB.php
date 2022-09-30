@@ -53,7 +53,7 @@ class SaidaDB
     {
 
         $connect = new ConnectionDB();
-        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_data desc";
+        $query = "select sai_id,sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_data desc";
         $result = mysqli_query($connect->connect(), $query);
 
         $list = mysqli_fetch_assoc($result);
@@ -141,7 +141,7 @@ class SaidaDB
     {
 
         $connect = new ConnectionDB();
-        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_data asc";
+        $query = "select sai_id,sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_data asc";
         $result = mysqli_query($connect->connect(), $query);
 
         $list = mysqli_fetch_assoc($result);
@@ -179,12 +179,12 @@ class SaidaDB
         }
     }
 
-    // Ordenar Em Ordem Crescente
+    // Ordenar Mais Novo para Mais Antigo
     function ordenaDecrescente($id)
     {
 
         $connect = new ConnectionDB();
-        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_data desc";
+        $query = "select sai_id,sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_data desc";
         $result = mysqli_query($connect->connect(), $query);
 
         $list = mysqli_fetch_assoc($result);
@@ -222,12 +222,12 @@ class SaidaDB
         }
     }
 
-    // Ordenar Em Ordem Crescente
+    // Ordenar Em Ordem Alfabática
     function ordenaAlfabetico($id)
     {
 
         $connect = new ConnectionDB();
-        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_departamento asc";
+        $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id order by sai_departamento ";
         $result = mysqli_query($connect->connect(), $query);
 
         $list = mysqli_fetch_assoc($result);
@@ -513,4 +513,60 @@ class SaidaDB
                     </div>";
         }
     }
+
+    //Carregar Dados Saida
+    function CarregarDadosSaida($id)
+    {
+        $connect = new ConnectionDB();
+        $query = "select day(sai_data) as dia, month(sai_data) as mes, year(sai_data) as ano,sai_departamento,sai_produto,sai_observacao from saidas where sai_id = $id";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+        
+        $dados = [];
+
+        if ($total > 0) {
+            do {
+                
+                $dia = $list['dia'];
+                $mes = $list['mes'];
+                $ano = $list['ano'];
+                $dep = $list['sai_departamento'];
+                $produto = $list['sai_produto'];
+                $obs = $list['sai_observacao'];
+                
+                $dados = [$dia,$mes,$ano,$dep,$produto,$obs];
+         
+
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+
+        $_SESSION['dados_saida_E'] = $dados;
+    }
+
+        //Alterar Dados da Saída
+        function alterarSaida(Saida $saida,$id) {
+
+            $connect = new ConnectionDB();
+    
+            $dia = mysqli_real_escape_string($connect->connect(), $saida->getDia());
+            $mes = mysqli_real_escape_string($connect->connect(), $saida->getMes());
+            $ano = mysqli_real_escape_string($connect->connect(), $saida->getAno());
+            $departamento = mysqli_real_escape_string($connect->connect(), $saida->getDepartamento());
+            $produto = mysqli_real_escape_string($connect->connect(), $saida->getProduto());
+            $obs = mysqli_real_escape_string($connect->connect(), $saida->getObservacao());
+            
+            $data = $ano . "-" . $mes . "-" . $dia;
+
+            $sql = "update saidas set sai_departamento = '$departamento', sai_data = '$data', sai_produto = '$produto',
+            sai_observacao = '$obs' where sai_id = $id";
+
+            if (mysqli_query($connect->connect(), $sql)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    
 }
