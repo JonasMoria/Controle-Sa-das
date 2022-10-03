@@ -199,24 +199,12 @@ if (isset($_POST['editar_confirm'])) {
         $dia = $_POST['saida_diaE'];
         $mes = $_POST['saida_mesE'];
         $ano = $_POST['saida_anoE'];
-
-        if ($saida->verificaData($dia, $mes, $ano)) {
-            $saida->setDia($dia);
-            $saida->setMes($mes);
-            $saida->setAno($ano);
-        } else {
-            $_SESSION['saida_status'] = [false, 'Data Inválida, Tente Novamente'];
-        }
+        $saida->setDia($dia);
+        $saida->setMes($mes);
+        $saida->setAno($ano);
         $saida->setDepartamento($_POST['saida_departamentoE']);
         $saida->setProduto($_POST['saida_produtoE']);
         $saida->setObservacao($_POST['saida_observacaoE']);
-        
-        // echo $saida->getDia();
-        // echo $saida->getmes();
-        // echo $saida->getAno();
-        // echo $saida->getDepartamento();
-        // echo $saida->getProduto();
-        // echo $saida->getObservacao();
 
         if ($saidaDB->alterarSaida($saida, $_SESSION['getIdDep'])) {
 
@@ -232,6 +220,31 @@ if (isset($_POST['editar_confirm'])) {
     } catch (Exception $erro) {
         $_SESSION['saida_status'] = [false, $erro->getMessage()];
         header('Location: /controlesaidas/Views/pages/editarSaidas.php');
+        exit;
+    } catch (Throwable $erro) {
+        $_SESSION['saida_status'] = [false, 'Valores Inválidos, Insira Novamente!'];
+        header('Location: /controlesaidas/Views/pages/editarSaidas.php');
+        exit;
+    }
+}
+
+// Excluir Saídas
+if (isset($_GET['excluir'])) {
+    $_SESSION['excluir_saida'] = [true, $_GET['excluir']];
+    exit(header('Location: /controlesaidas/Views/pages/saidas.php'));
+}
+if (isset($_POST['excluir_sai_confirm'])) {
+    try {
+        $idSaida =  $_SESSION['confirma_excluir'];
+        $idUsuario = $_SESSION['dados_usuario'][1];
+        $saidaDB = new SaidaDB();
+        $saidaDB->deletarSaida($idSaida,$idUsuario);
+        header('Location: /controlesaidas/Views/pages/saidas.php');
+        unset($_SESSION['confirma_excluir']);
+        exit;
+    } catch (Exception $erro) {
+        $_SESSION['falha_excluir_saida'] = [true, $erro->getMessage()];
+       header('Location: /controlesaidas/Views/pages/saidas.php');
         exit;
     }
 }

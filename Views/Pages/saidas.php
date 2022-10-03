@@ -161,7 +161,7 @@ if (!isset($_SESSION)) {
                                 <input type="text" class="form-control" name="pesquisa_observacao" placeholder="Observação">
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-success" name="pesquisa_por_observacao" ><img src="../../Content/icones/pesquisar.svg" alt=""></button>
+                                <button class="btn btn-success" name="pesquisa_por_observacao"><img src="../../Content/icones/pesquisar.svg" alt=""></button>
                             </div>
                         </div>
                     </form>
@@ -275,6 +275,35 @@ if (!isset($_SESSION)) {
             </div>
         </div>
     </div>
+
+    <!-- Modal Excluir Saída -->
+    <div class="modal fade" id="mdlExcluirSaida" tabindex="-1" aria-labelledby="mdlExcluirSai" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="../../Content/icones/atencao.svg" height="50%" width="50%" alt="atencão">
+                    <h3>Deseja Excluir esta Saída? Não será possível recuperá-la!</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">CANCELAR</button>
+                    <form action="../../Controllers/SaidaController.php" method="POST">
+                        <button type="submit" name="excluir_sai_confirm" class="btn btn-danger">EXCLUIR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+<script>
+    <?php if (isset($_SESSION['excluir_saida'][0]) == true) : ?>
+        $(window).on('load', function() {
+            $('#mdlExcluirSaida').modal('show');
+        });
+    <?php 
+    $_SESSION['confirma_excluir'] = $_SESSION['excluir_saida'][1];
+    unset($_SESSION['excluir_saida']);
+    endif; ?>
+</script>
 
 </html>

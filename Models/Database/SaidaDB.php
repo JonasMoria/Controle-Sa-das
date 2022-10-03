@@ -464,13 +464,13 @@ class SaidaDB
         }
     }
 
-    //Pesquisa Por Produto
+    //Pesquisa Por Observação
     function pesquisaObservacao($id, $observacao)
     {
         try {
             $connect = new ConnectionDB();
             $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as 
-            sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_produto like '%$observacao%'";
+            sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_observacao like '%$observacao%'";
             $result = mysqli_query($connect->connect(), $query);
 
             $list = mysqli_fetch_assoc($result);
@@ -545,11 +545,13 @@ class SaidaDB
         $_SESSION['dados_saida_E'] = $dados;
     }
 
-        //Alterar Dados da Saída
-        function alterarSaida(Saida $saida,$id) {
-
+    //Alterar Dados da Saída
+    function alterarSaida(Saida $saida,$id) {
+        
+        try {
+            
             $connect = new ConnectionDB();
-    
+
             $dia = mysqli_real_escape_string($connect->connect(), $saida->getDia());
             $mes = mysqli_real_escape_string($connect->connect(), $saida->getMes());
             $ano = mysqli_real_escape_string($connect->connect(), $saida->getAno());
@@ -558,15 +560,38 @@ class SaidaDB
             $obs = mysqli_real_escape_string($connect->connect(), $saida->getObservacao());
             
             $data = $ano . "-" . $mes . "-" . $dia;
-
+    
             $sql = "update saidas set sai_departamento = '$departamento', sai_data = '$data', sai_produto = '$produto',
             sai_observacao = '$obs' where sai_id = $id";
-
+    
             if (mysqli_query($connect->connect(), $sql)) {
                 return true;
             } else {
                 return false;
             }
+        } catch (mysqli_sql_exception $th) {
+            throw new Exception('Valores Inválidos, Insira Novamente!');  
         }
+    }
+
+    // Deletar Uma Saída
+    function deletarSaida($idSaida,$id) {
+
+        try {
+            
+            $connect = new ConnectionDB();
+            $query = "delete from saidas where sai_id = $idSaida and usu_id = $id";
+    
+            if (mysqli_query($connect->connect(), $query)) {
+                return true;
+            } else {
+                throw new Exception('Falha ao Excluir Saída!!');
+            }
+
+        } catch (mysqli_sql_exception $th) {
+            throw new Exception('Falha ao Excluir Saída!!');
+        }
+
+    }
     
 }
