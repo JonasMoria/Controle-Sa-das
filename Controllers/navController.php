@@ -9,6 +9,7 @@ $login = $host.$project.'index.php';
 $home = $host.$project.'views/pages/home.php';
 $departamentos = $host.$project.'views/pages/departamentos.php';
 $saidas = $host.$project.'views/pages/saidas.php';
+$chamados = $host.$project.'views/pages/chamados.php';
 
 if (isset($_POST['exit'])) {
     session_destroy();
@@ -27,6 +28,10 @@ if (isset($_POST['go_departamentos'])) {
 }
 if (isset($_POST['go_saidas'])) {
     header("Location: $saidas");
+    exit;
+}
+if (isset($_POST['go_chamados'])) {
+    header("Location: $chamados");
     exit;
 }
 

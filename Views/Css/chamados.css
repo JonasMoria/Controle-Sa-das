@@ -1,0 +1,84 @@
+.pagina-local {
+    margin-left: 43%;
+    margin-right: 43%;
+    width: 14%;
+    font-weight: 700;
+}
+
+.box-funcoes-1 button{
+    float: left;
+    margin-right: 3%;
+}
+
+.box-funcoes-2 button {
+    float: right;
+    margin-left: 3%;
+}
+
+.bntImprimir {
+    background-color: red;
+}
+
+.btnFuncoes,
+.bntImprimir {
+    font-weight: 500;
+    color: white;
+}
+
+.btnFuncoes:hover {
+    color: white;
+    font-size: 2vh;
+}
+
+.box-msgErro {
+    margin-left: 20%;
+    margin-right: 20%;
+    width: 60%;
+}
+
+.ocultarImprimir {
+    display: inline-flex;
+    width: 100%;
+}
+.ocultarImprimir a {
+  width: 47%;
+  margin: 1.5%;
+}
+
+.table-responsive {
+    text-align: center;
+}
+.table-observacao {
+    width: 300px;
+    height: 10px;
+}
+.inputPesquisa {
+    float: right;
+    margin-right: 3%;
+}
+
+@media screen and (max-width: 600px) {
+    .ocultarImprimir {
+        width: 100%;
+    }
+
+    .ocultarImprimir a {
+        width: 100%;
+        margin-top: 20%;
+    }
+    .box-funcoes-1 button{
+        float: left;
+    }
+    
+    .box-funcoes-2 button {
+        float: left;
+        margin-top: 2%;
+    }
+    .table-observacao {
+        
+
+        overflow-wrap: normal;  
+        word-wrap: normal; 
+        word-break: normal;
+    }
+}
