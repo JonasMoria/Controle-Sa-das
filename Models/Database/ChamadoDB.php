@@ -3,8 +3,92 @@
 require_once(__DIR__ . '../../Chamado.php');
 require_once(__DIR__ . '../../Database/ConnectionDB.php');
 
-class ChamadoDB {
+class ChamadoDB
+{
 
+    function lancarChamado(Chamado $chamado, $id)
+    {
+
+        $connect = new ConnectionDB();
+
+        $dia = mysqli_real_escape_string($connect->connect(), $chamado->getDia());
+        $mes = mysqli_real_escape_string($connect->connect(), $chamado->getMes());
+        $ano = mysqli_real_escape_string($connect->connect(), $chamado->getAno());
+        $departamento = mysqli_real_escape_string($connect->connect(), $chamado->getDepartamento());
+        $produto = mysqli_real_escape_string($connect->connect(), $chamado->getProduto());
+        $observacao = mysqli_real_escape_string($connect->connect(), $chamado->getObservacao());
+
+        $data = $ano . "-" . $mes . "-" . $dia;
+        $query = "insert into chamados(usu_id,cha_data,cha_produto,cha_observacao,cha_status,cha_departamento) 
+        VALUES ($id, '$data', '$produto', '$observacao', 1, '$departamento')";
+
+        if (mysqli_query($connect->connect(), $query)) {
+            return true;
+        } else {
+            throw new Exception('Falha ao Cadastrar Chamado!!');
+        }
+    }
+
+    //Selecionar Departamento na Modal
+    function listarDepartamentos($id)
+    {
+        $connect = new ConnectionDB();
+        $query = "select dep_id,dep_nome from departamentos where usu_id = $id order by dep_nome";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+            do {
+                $id = $list['dep_id'];
+                $nome = $list['dep_nome'];
+                echo "<option value='$nome'>$nome</option>";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
+
+    //Listando Chamados
+    function listarChamados($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id order by cha_data desc";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+            do {
+
+                $Id   = $list['cha_id'];
+                $data = $list['cha_data'];
+                $produto = $list['cha_produto'];
+                $obs = $list['cha_observacao'];
+                $dept = $list['cha_departamento'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+
+
+                echo "
+                    <tr>
+                    <th scope='row'>$Id</th>
+                    <td>$data</td>
+                    <td>$produto</td>
+                    <td>$obs</td>
+                    <td>$dept</td>
+                    <td>$status</td>
+                    <td class='col-12 row ocultarImprimir'>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    </td>
+                    </tr>
+                    ";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
 }
-
-?>

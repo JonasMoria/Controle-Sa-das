@@ -7,6 +7,7 @@ class Chamado {
     private $mes;
     private $ano;
     private $produto;
+    private $departamento;
     private $observacao;
     private $status = 1; // em aberto
 
@@ -50,6 +51,14 @@ class Chamado {
          } 
     }
 
+    function setDepartamento($departamento) {
+        if (!empty($departamento) && !is_null($departamento)) {
+            $this->departamento = $departamento;
+         } else {
+             throw new Exception('Campo Departamento Não Pode Ser Vazio!');
+         }
+    }
+    
     function setObservacao($observacao) {
         if (!empty($observacao) && !is_null($observacao)) {
             $this->observacao = $observacao;
@@ -81,8 +90,11 @@ class Chamado {
     function getObservacao(){
         return $this->observacao;
     }
+    function getDepartamento(){
+        return $this->departamento;
+    }
     function getStatus(){
-        return $this->observacao;
+        return $this->status;
     }
 
     function verificaData($dia,$mes,$ano) {

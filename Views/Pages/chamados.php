@@ -50,7 +50,26 @@ if (!isset($_SESSION)) {
         </div>
 
         <div class="col-12 row box-msgErro">
+            <?php
+            if (isset($_SESSION['chamado_status'])) {
 
+                $status = $_SESSION['chamado_status'][0];
+
+                if ($status == true) {
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                <strong>Saída Cadastrada!</strong>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                          </div>";
+                } else {
+                    $erro = $_SESSION['chamado_status'][1];
+                    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                <strong>Erro!</strong> $erro
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                          </div>";
+                }
+            }
+            unset($_SESSION['chamado_status']);
+            ?>
         </div>
 
         <!-- Tabela de Chamados -->
@@ -65,13 +84,15 @@ if (!isset($_SESSION)) {
                         <th scope="col">DATA</th>
                         <th scope="col">PRODUTO</th>
                         <th scope="col">OBS</th>
+                        <th scope="col">SETOR</th>
                         <th scope="col">STATUS</th>
                         <th scope="col" id="columAcoes">ACÕES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-
+                    $id = $_SESSION['dados_usuario'][1];
+                    loadTable($id);
                     ?>
                 </tbody>
             </table>
@@ -228,7 +249,7 @@ if (!isset($_SESSION)) {
                                 <select class="form-select" name="chamado_departamento" aria-label="Default select example" required>
                                     <option selected value="0" disabled>Selecione Um Departamento</option>
                                     <?php
-
+                                    listarDepartamentos($_SESSION['dados_usuario'][1]);
                                     ?>
                                 </select>
                             </div>
