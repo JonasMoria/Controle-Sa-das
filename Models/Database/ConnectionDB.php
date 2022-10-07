@@ -1,13 +1,19 @@
 <?php
 
-class ConnectionDB{
+class ConnectionDB
+{
 
-    function connect() {
+    function connect()
+    {
         $host = '127.0.0.1';
         $user = 'root';
         $pass = 'password';
         $db   = 'controlesaidas';
 
-        return mysqli_connect($host,$user,$pass,$db);
+        if (mysqli_connect($host, $user, $pass, $db)) {
+            return mysqli_connect($host, $user, $pass, $db);
+        } else {
+            return false;
+        }
     }
 }

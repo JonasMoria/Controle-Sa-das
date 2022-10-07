@@ -52,7 +52,7 @@ session_start();
                     if (isset($_SESSION['cadastro_erro'])) {
                         $erro = $_SESSION['mostrar_erro'];
                         echo "<div class='alert alert-danger' role='alert'>
-                               <strong>$erro!!</strong> Tente Novamente
+                               <strong>$erro!!</strong>
                               </div>";
                     }
                     unset($_SESSION['cadastro_efetuado']);
