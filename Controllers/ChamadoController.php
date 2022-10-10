@@ -209,3 +209,24 @@ if (isset($_POST['salvar_chamado'])) {
         header('Location: /controlesaidas/Views/pages/chamados.php');
     }
 }
+
+// Excluir Chamados
+if (isset($_GET['excluir'])) {
+    $_SESSION['excluir_chamado'] = [true, $_GET['excluir']];
+    exit(header('Location: /controlesaidas/Views/pages/chamados.php'));
+}
+if (isset($_POST['excluir_cha_confirm'])) {
+    try {
+        $idChamado =  $_SESSION['confirma_excluir'];
+        $idUsuario = $_SESSION['dados_usuario'][1];
+        $chamadoDB = new ChamadoDB();
+        $chamadoDB->deletarChamado($idChamado,$idUsuario);
+        header('Location: /controlesaidas/Views/pages/chamados.php');
+        unset($_SESSION['confirma_excluir']);
+        exit;
+    } catch (Exception $erro) {
+        $_SESSION['falha_excluir_saida'] = [true, $erro->getMessage()];
+       header('Location: /controlesaidas/Views/pages/chamados.php');
+        exit;
+    }
+}

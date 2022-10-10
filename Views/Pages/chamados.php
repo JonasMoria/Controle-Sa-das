@@ -279,7 +279,35 @@ if (!isset($_SESSION)) {
             </div>
         </div>
     </div>
+
+    <!-- Modal Excluir Chamado -->
+    <div class="modal fade" id="mdlExcluirChamado" tabindex="-1" aria-labelledby="mdlExcluirCha" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="../../Content/icones/atencao.svg" height="50%" width="50%" alt="atencão">
+                    <h3>Deseja Excluir este Chamado? Não será possível recuperá-lo!</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">CANCELAR</button>
+                    <form action="../../Controllers/ChamadoController.php" method="POST">
+                        <button type="submit" name="excluir_cha_confirm" class="btn btn-danger">EXCLUIR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    <?php if (isset($_SESSION['excluir_chamado'][0]) == true) : ?>
+        $(window).on('load', function() {
+            $('#mdlExcluirChamado').modal('show');
+        });
+    <?php
+        $_SESSION['confirma_excluir'] = $_SESSION['excluir_chamado'][1];
+        unset($_SESSION['excluir_chamado']);
+    endif; ?>
+</script>
 <script>
     let sts = document.getElementById('td-status').value;
     let bgStatus = document.getElementById('td-status').style.color;

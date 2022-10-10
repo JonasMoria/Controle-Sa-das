@@ -615,4 +615,23 @@ class ChamadoDB
             } while ($list = mysqli_fetch_assoc($result));
         }
     }
+
+    // Deletar Um Chamado
+    function deletarChamado($idChamado, $id)
+    {
+
+        try {
+
+            $connect = new ConnectionDB();
+            $query = "delete from chamados where cha_id = $idChamado and usu_id = $id";
+
+            if (mysqli_query($connect->connect(), $query)) {
+                return true;
+            } else {
+                throw new Exception('Falha ao Excluir Chamado!!');
+            }
+        } catch (mysqli_sql_exception $th) {
+            throw new Exception('Falha ao Excluir Chamado!!');
+        }
+    }
 }
