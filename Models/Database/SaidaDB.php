@@ -370,7 +370,7 @@ class SaidaDB
         try {
 
             $connect = new ConnectionDB();
-            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_departamento = '$departamento'";
+            $query = "select sai_id,date_format(sai_data,'%d-%m-%Y') as sai_data,sai_departamento,sai_produto,sai_observacao from saidas where usu_id = $id and sai_departamento like '%$departamento%'";
             $result = mysqli_query($connect->connect(), $query);
 
             $list = mysqli_fetch_assoc($result);
