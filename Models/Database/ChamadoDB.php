@@ -292,7 +292,7 @@ class ChamadoDB
             }
         } catch (mysqli_sql_exception) {
             echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                    <strong>Setor Informado Incorretamente</strong>
+                    <strong>Produto Informado Incorretamente</strong>
                     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                 </div>";
         }
@@ -342,9 +342,277 @@ class ChamadoDB
             }
         } catch (mysqli_sql_exception) {
             echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <strong>Setor Informado Incorretamente</strong>
+                            <strong>Obs Informada Incorretamente</strong>
                             <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                         </div>";
+        }
+    }
+
+    function filtrarDatas($data1, $data2, $id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where cha_data BETWEEN '$data1' AND '$data2' and usu_id = $id";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+
+            do {
+
+                $Id   = $list['cha_id'];
+                $data = $list['cha_data'];
+                $produto = $list['cha_produto'];
+                $obs = $list['cha_observacao'];
+                $dept = $list['cha_departamento'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+
+                echo "
+                    <tr>
+                    <th scope='row'>$Id</th>
+                    <td>$data</td>
+                    <td>$produto</td>
+                    <td>$obs</td>
+                    <td>$dept</td>
+                    <td class='td-status'>$status</td>
+                    <td class='col-12 row ocultarImprimir'>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    </td>
+                    </tr>
+                    ";
+            } while ($list = mysqli_fetch_assoc($result));
+        } else {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>Datas Informadas Incorretamente</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+        }
+    }
+
+    // Ordenar Em Ordem Crescente
+    function ordenaCrescente($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id order by cha_data asc";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+
+            do {
+
+                $Id   = $list['cha_id'];
+                $data = $list['cha_data'];
+                $produto = $list['cha_produto'];
+                $obs = $list['cha_observacao'];
+                $dept = $list['cha_departamento'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+
+                echo "
+                    <tr>
+                    <th scope='row'>$Id</th>
+                    <td>$data</td>
+                    <td>$produto</td>
+                    <td>$obs</td>
+                    <td>$dept</td>
+                    <td class='td-status'>$status</td>
+                    <td class='col-12 row ocultarImprimir'>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    </td>
+                    </tr>
+                    ";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
+
+    // Ordenar Em Ordem Decrescente
+    function ordenaDecrescente($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id order by cha_data desc";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+
+            do {
+
+                $Id   = $list['cha_id'];
+                $data = $list['cha_data'];
+                $produto = $list['cha_produto'];
+                $obs = $list['cha_observacao'];
+                $dept = $list['cha_departamento'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+
+                echo "
+                    <tr>
+                    <th scope='row'>$Id</th>
+                    <td>$data</td>
+                    <td>$produto</td>
+                    <td>$obs</td>
+                    <td>$dept</td>
+                    <td class='td-status'>$status</td>
+                    <td class='col-12 row ocultarImprimir'>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    </td>
+                    </tr>
+                    ";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
+
+    // Ordenar Em Ordem Decrescente
+    function ordenaAlfabetico($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id order by cha_departamento";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+
+            do {
+
+                $Id   = $list['cha_id'];
+                $data = $list['cha_data'];
+                $produto = $list['cha_produto'];
+                $obs = $list['cha_observacao'];
+                $dept = $list['cha_departamento'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+
+                echo "
+                    <tr>
+                    <th scope='row'>$Id</th>
+                    <td>$data</td>
+                    <td>$produto</td>
+                    <td>$obs</td>
+                    <td>$dept</td>
+                    <td class='td-status'>$status</td>
+                    <td class='col-12 row ocultarImprimir'>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    </td>
+                    </tr>
+                    ";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
+
+    // Ordenar por Abertos
+    function ordenaAbertos($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id and cha_status = 1 order by cha_data desc";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+
+            do {
+
+                $Id   = $list['cha_id'];
+                $data = $list['cha_data'];
+                $produto = $list['cha_produto'];
+                $obs = $list['cha_observacao'];
+                $dept = $list['cha_departamento'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+
+                echo "
+                        <tr>
+                        <th scope='row'>$Id</th>
+                        <td>$data</td>
+                        <td>$produto</td>
+                        <td>$obs</td>
+                        <td>$dept</td>
+                        <td class='td-status'>$status</td>
+                        <td class='col-12 row ocultarImprimir'>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        </td>
+                        </tr>
+                        ";
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+    }
+
+    // Ordenar por Abertos
+    function ordenaFechados($id)
+    {
+
+        $connect = new ConnectionDB();
+        $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id and cha_status = 0 order by cha_data desc";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        if ($total > 0) {
+
+            do {
+
+                $Id   = $list['cha_id'];
+                $data = $list['cha_data'];
+                $produto = $list['cha_produto'];
+                $obs = $list['cha_observacao'];
+                $dept = $list['cha_departamento'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+
+                echo "
+                               <tr>
+                               <th scope='row'>$Id</th>
+                               <td>$data</td>
+                               <td>$produto</td>
+                               <td>$obs</td>
+                               <td>$dept</td>
+                               <td class='td-status'>$status</td>
+                               <td class='col-12 row ocultarImprimir'>
+                               <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                               <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                               </td>
+                               </tr>
+                               ";
+            } while ($list = mysqli_fetch_assoc($result));
         }
     }
 }

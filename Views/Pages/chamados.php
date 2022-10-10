@@ -204,21 +204,21 @@ if (!isset($_SESSION)) {
                     <form action="../../Controllers/ChamadoController.php" method="post">
                         <section class="col-12 mt-3 text-center row">
                             <div class="col-4">
-                                <button class="btn btn-success btn-sm" name="orderna_crescente"><img src="../../Content/icones/recente.svg">Antigo</button>
+                                <button class="btn btn-success btn-sm" name="ordena_crescente"><img src="../../Content/icones/recente.svg">Antigo</button>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success btn-sm" name="orderna_decrescente"> <img src="../../Content/icones/antigo.svg" alt="antigo">Recente</button>
+                                <button class="btn btn-success btn-sm" name="ordena_decrescente"> <img src="../../Content/icones/antigo.svg" alt="antigo">Recente</button>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-success btn-sm" name="orderna_alfabeto"> <img src="../../Content/icones/alfabetica.svg" alt="alfabética"> Alfabética</button>
+                                <button class="btn btn-success btn-sm" name="ordena_alfabeto"> <img src="../../Content/icones/alfabetica.svg" alt="alfabética"> Alfabética</button>
                             </div>
                         </section>
                         <section class="col-12 row text-center mt-3">
                             <div class="col-6">
-                                <button class="btn btn-success btn-sm" name="orderna_aberto"> <img src="../../Content/icones/andamento.svg" alt="abertos"> Em Aberto</button>
+                                <button class="btn btn-success btn-sm" name="ordena_abertos"> <img src="../../Content/icones/andamento.svg" alt="abertos"> Em Aberto</button>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-success btn-sm" name="orderna_fechado"> <img src="../../Content/icones/concluido.svg" alt="fechados"> Fechados</button>
+                                <button class="btn btn-success btn-sm" name="ordena_fechados"> <img src="../../Content/icones/concluido.svg" alt="fechados"> Fechados</button>
                             </div>
                         </section>
                     </form>
