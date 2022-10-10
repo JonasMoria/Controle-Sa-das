@@ -57,7 +57,7 @@ if (!isset($_SESSION)) {
 
                 if ($status == true) {
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                                <strong>Saída Cadastrada!</strong>
+                                <strong>Chamado Cadastrado!</strong>
                                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                           </div>";
                 } else {
@@ -213,6 +213,14 @@ if (!isset($_SESSION)) {
                                 <button class="btn btn-success btn-sm" name="orderna_alfabeto"> <img src="../../Content/icones/alfabetica.svg" alt="alfabética"> Alfabética</button>
                             </div>
                         </section>
+                        <section class="col-12 row text-center mt-3">
+                            <div class="col-6">
+                                <button class="btn btn-success btn-sm" name="orderna_aberto"> <img src="../../Content/icones/andamento.svg" alt="abertos"> Em Aberto</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-success btn-sm" name="orderna_fechado"> <img src="../../Content/icones/concluido.svg" alt="fechados"> Fechados</button>
+                            </div>
+                        </section>
                     </form>
                 </div>
             </div>
@@ -272,5 +280,15 @@ if (!isset($_SESSION)) {
         </div>
     </div>
 </body>
+<script>
+    let sts = document.getElementById('td-status').value;
+    let bgStatus = document.getElementById('td-status').style.color;
+
+    if (sts == 'em aberto') {
+        bgStatus = 'red';
+    } else {
+
+    }
+</script>
 
 </html>

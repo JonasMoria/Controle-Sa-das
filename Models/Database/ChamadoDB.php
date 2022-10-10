@@ -91,4 +91,260 @@ class ChamadoDB
             } while ($list = mysqli_fetch_assoc($result));
         }
     }
+
+    //Pesquisa Por ID
+    function pesquisaID($id, $idChamado)
+    {
+        try {
+            $connect = new ConnectionDB();
+            $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id and cha_id = $idChamado";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   = $list['cha_id'];
+                    $data = $list['cha_data'];
+                    $produto = $list['cha_produto'];
+                    $obs = $list['cha_observacao'];
+                    $dept = $list['cha_departamento'];
+                    if ($list['cha_status'] == 1) {
+                        $status = 'em aberto';
+                    } else {
+                        $status = 'fechado';
+                    }
+
+
+                    echo "
+                        <tr>
+                        <th scope='row'>$Id</th>
+                        <td>$data</td>
+                        <td>$produto</td>
+                        <td>$obs</td>
+                        <td>$dept</td>
+                        <td class='td-status'>$status</td>
+                        <td class='col-12 row ocultarImprimir'>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        </td>
+                        </tr>
+                        ";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>ID Informado Incorretamente</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+        }
+    }
+
+    //Pesquisa Por Data
+    function pesquisaData($id, $dataChamado)
+    {
+        try {
+
+            $connect = new ConnectionDB();
+            $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id and cha_data = '$dataChamado'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   = $list['cha_id'];
+                    $data = $list['cha_data'];
+                    $produto = $list['cha_produto'];
+                    $obs = $list['cha_observacao'];
+                    $dept = $list['cha_departamento'];
+                    if ($list['cha_status'] == 1) {
+                        $status = 'em aberto';
+                    } else {
+                        $status = 'fechado';
+                    }
+
+
+                    echo "
+                        <tr>
+                        <th scope='row'>$Id</th>
+                        <td>$data</td>
+                        <td>$produto</td>
+                        <td>$obs</td>
+                        <td>$dept</td>
+                        <td class='td-status'>$status</td>
+                        <td class='col-12 row ocultarImprimir'>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        </td>
+                        </tr>
+                        ";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                            <strong>Data Informada Incorretamente</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
+        }
+    }
+
+    //Pesquisa Por Departamento
+    function pesquisaDepartamento($id, $departamento)
+    {
+        try {
+
+            $connect = new ConnectionDB();
+            $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id and cha_departamento like '%$departamento%'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   = $list['cha_id'];
+                    $data = $list['cha_data'];
+                    $produto = $list['cha_produto'];
+                    $obs = $list['cha_observacao'];
+                    $dept = $list['cha_departamento'];
+                    if ($list['cha_status'] == 1) {
+                        $status = 'em aberto';
+                    } else {
+                        $status = 'fechado';
+                    }
+
+
+                    echo "
+                        <tr>
+                        <th scope='row'>$Id</th>
+                        <td>$data</td>
+                        <td>$produto</td>
+                        <td>$obs</td>
+                        <td>$dept</td>
+                        <td class='td-status'>$status</td>
+                        <td class='col-12 row ocultarImprimir'>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        </td>
+                        </tr>
+                        ";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                            <strong>Setor Informado Incorretamente</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
+        }
+    }
+
+    //Pesquisa Por Produto
+    function pesquisaProduto($id, $produto)
+    {
+        try {
+            $connect = new ConnectionDB();
+            $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id and cha_produto like '%$produto%'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   = $list['cha_id'];
+                    $data = $list['cha_data'];
+                    $produto = $list['cha_produto'];
+                    $obs = $list['cha_observacao'];
+                    $dept = $list['cha_departamento'];
+                    if ($list['cha_status'] == 1) {
+                        $status = 'em aberto';
+                    } else {
+                        $status = 'fechado';
+                    }
+
+
+                    echo "
+                        <tr>
+                        <th scope='row'>$Id</th>
+                        <td>$data</td>
+                        <td>$produto</td>
+                        <td>$obs</td>
+                        <td>$dept</td>
+                        <td class='td-status'>$status</td>
+                        <td class='col-12 row ocultarImprimir'>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        </td>
+                        </tr>
+                        ";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                    <strong>Setor Informado Incorretamente</strong>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>";
+        }
+    }
+
+    //Pesquisa Por Observação
+    function pesquisaObservacao($id, $observacao)
+    {
+        try {
+            $connect = new ConnectionDB();
+            $query = "select cha_id,cha_data,cha_produto,cha_observacao,cha_departamento,cha_status from chamados where usu_id = $id and cha_observacao like '%$observacao%'";
+            $result = mysqli_query($connect->connect(), $query);
+
+            $list = mysqli_fetch_assoc($result);
+            $total = mysqli_num_rows($result);
+
+            if ($total > 0) {
+
+                do {
+
+                    $Id   = $list['cha_id'];
+                    $data = $list['cha_data'];
+                    $produto = $list['cha_produto'];
+                    $obs = $list['cha_observacao'];
+                    $dept = $list['cha_departamento'];
+                    if ($list['cha_status'] == 1) {
+                        $status = 'em aberto';
+                    } else {
+                        $status = 'fechado';
+                    }
+
+                    echo "
+                        <tr>
+                        <th scope='row'>$Id</th>
+                        <td>$data</td>
+                        <td>$produto</td>
+                        <td>$obs</td>
+                        <td>$dept</td>
+                        <td class='td-status'>$status</td>
+                        <td class='col-12 row ocultarImprimir'>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        </td>
+                        </tr>
+                        ";
+                } while ($list = mysqli_fetch_assoc($result));
+            }
+        } catch (mysqli_sql_exception) {
+            echo   "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                            <strong>Setor Informado Incorretamente</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
+        }
+    }
 }
