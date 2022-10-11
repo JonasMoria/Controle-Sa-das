@@ -10,6 +10,7 @@ $home = $host.$project.'views/pages/home.php';
 $departamentos = $host.$project.'views/pages/departamentos.php';
 $saidas = $host.$project.'views/pages/saidas.php';
 $chamados = $host.$project.'views/pages/chamados.php';
+$configs = $host.$project.'views/pages/configs.php';
 
 if (isset($_POST['exit'])) {
     session_destroy();
@@ -34,6 +35,9 @@ if (isset($_POST['go_chamados'])) {
     header("Location: $chamados");
     exit;
 }
-
+if (isset($_POST['go_configs'])) {
+    header("Location: $configs");
+    exit;
+}
 
 ?>
