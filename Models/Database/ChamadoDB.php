@@ -634,4 +634,87 @@ class ChamadoDB
             throw new Exception('Falha ao Excluir Chamado!!');
         }
     }
+
+    //Carregar Dados Chamado
+    function CarregarDadosChamado($id)
+    {
+        $connect = new ConnectionDB();
+        $query = "select day(cha_data) as dia, month(cha_data) as mes, year(cha_data) as ano,cha_departamento,cha_produto,cha_observacao, cha_status from chamados where cha_id = $id";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        $dados = [];
+
+        if ($total > 0) {
+            do {
+
+                $dia = $list['dia'];
+                $mes = $list['mes'];
+                $ano = $list['ano'];
+                $dep = $list['cha_departamento'];
+                $produto = $list['cha_produto'];
+                if ($list['cha_status'] == 1) {
+                    $status = 'em aberto';
+                } else {
+                    $status = 'fechado';
+                }
+                $obs = $list['cha_observacao'];
+
+                $dados = [$dia, $mes, $ano, $dep, $produto, $obs, $status];
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+
+        $_SESSION['dados_chamado_E'] = $dados;
+    }
+
+    //Alterar Dados da Saída
+    function alterarChamado(Chamado $chamado, $id)
+    {
+
+        try {
+
+            $connect = new ConnectionDB();
+
+            $dia = mysqli_real_escape_string($connect->connect(), $chamado->getDia());
+            $mes = mysqli_real_escape_string($connect->connect(), $chamado->getMes());
+            $ano = mysqli_real_escape_string($connect->connect(), $chamado->getAno());
+            $departamento = mysqli_real_escape_string($connect->connect(), $chamado->getDepartamento());
+            $produto = mysqli_real_escape_string($connect->connect(), $chamado->getProduto());
+            $observacao = mysqli_real_escape_string($connect->connect(), $chamado->getObservacao());
+
+            $data = $ano . "-" . $mes . "-" . $dia;
+
+            $sql = "update chamados set cha_data = '$data', cha_departamento = '$departamento', cha_produto = '$produto', cha_observacao = '$observacao' where cha_id = $id";
+
+            if (mysqli_query($connect->connect(), $sql)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (mysqli_sql_exception $th) {
+            throw new Exception('Valores Inválidos, Insira Novamente!');
+        }
+    }
+
+    //Alterar Status do Chamado
+    function alterarStatusChamado($idChamado)
+    {
+
+        try {
+
+            $connect = new ConnectionDB();
+
+            $sql = "update chamados set cha_status = 0 where cha_id = $idChamado";
+
+            if (mysqli_query($connect->connect(), $sql)) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (mysqli_sql_exception $th) {
+            throw new Exception('Falha ao realizar operação, Tente Novamente!');
+        }
+    }
 }

@@ -308,15 +308,4 @@ if (!isset($_SESSION)) {
         unset($_SESSION['excluir_chamado']);
     endif; ?>
 </script>
-<script>
-    let sts = document.getElementById('td-status').value;
-    let bgStatus = document.getElementById('td-status').style.color;
-
-    if (sts == 'em aberto') {
-        bgStatus = 'red';
-    } else {
-
-    }
-</script>
-
 </html>

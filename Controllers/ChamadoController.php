@@ -220,13 +220,85 @@ if (isset($_POST['excluir_cha_confirm'])) {
         $idChamado =  $_SESSION['confirma_excluir'];
         $idUsuario = $_SESSION['dados_usuario'][1];
         $chamadoDB = new ChamadoDB();
-        $chamadoDB->deletarChamado($idChamado,$idUsuario);
+        $chamadoDB->deletarChamado($idChamado, $idUsuario);
         header('Location: /controlesaidas/Views/pages/chamados.php');
         unset($_SESSION['confirma_excluir']);
         exit;
     } catch (Exception $erro) {
-        $_SESSION['falha_excluir_saida'] = [true, $erro->getMessage()];
-       header('Location: /controlesaidas/Views/pages/chamados.php');
+        $_SESSION['falha_excluir_chamado'] = [true, $erro->getMessage()];
+        header('Location: /controlesaidas/Views/pages/chamados.php');
         exit;
+    }
+}
+
+// Mostrar id Para Editar Chamado
+if (isset($_GET['editar'])) {
+    $_SESSION['getIdDep'] = $_GET['editar'];
+    header('Location: /controlesaidas/Views/pages/editarChamados.php');
+    exit;
+}
+
+//Atualiza Dados Chamado
+if (isset($_POST['editar_confirm'])) {
+
+    try {
+
+        $chamadoDB = new ChamadoDB();
+        $chamado   = new Chamado();
+
+        $dia = $_POST['chamado_diaE'];
+        $mes = $_POST['chamado_mesE'];
+        $ano = $_POST['chamado_anoE'];
+        if ($chamado->verificaData($dia, $mes, $ano)) {
+            $chamado->setDia($dia);
+            $chamado->setMes($mes);
+            $chamado->setAno($ano);
+        }
+        $chamado->setDepartamento($_POST['chamado_departamentoE']);
+        $chamado->setProduto($_POST['chamado_produtoE']);
+        $chamado->setObservacao($_POST['chamado_observacaoE']);
+
+        if ($chamadoDB->alterarChamado($chamado, $_SESSION['getIdDep'])) {
+
+            $_SESSION['chamado_status'] = [true, 'Chamado Alterado Com Sucesso!!'];
+            header('Location: /controlesaidas/Views/pages/editarChamados.php');
+            exit;
+        } else {
+
+            $_SESSION['chamado_status'] = [false, 'Não Foi Possível Alterar Os Dados, Tente Novamente'];
+            header('Location: /controlesaidas/Views/pages/editarChamados.php');
+            exit;
+        }
+    } catch (Exception $erro) {
+        $_SESSION['chamado_status'] = [false, $erro->getMessage()];
+        header('Location: /controlesaidas/Views/pages/editarChamados.php');
+        exit;
+    } catch (Throwable $erro) {
+        $_SESSION['chamado_status'] = [false, 'Valores Inválidos, Insira Novamente!'];
+        header('Location: /controlesaidas/Views/pages/editarChamados.php');
+        exit;
+    }
+}
+
+// Altera o status do chamado
+if (isset($_POST['btn_fechar_chamado'])) {
+
+    try {
+
+        $chamadoDB = new ChamadoDB();
+        $idChamado = $_SESSION['getIdDep'];
+
+        if ($chamadoDB->alterarStatusChamado($idChamado)) {
+            $_SESSION['chamado_status'] = [true, 'Status Alterado Com Sucesso!!'];
+            header('Location: /controlesaidas/Views/pages/editarChamados.php');
+            exit;
+        } else {
+            $_SESSION['chamado_status'] = [false, 'Não Foi Possível Alterar O Status, Tente Novamente'];
+            header('Location: /controlesaidas/Views/pages/editarChamados.php');
+            exit;
+        }
+    } catch (Throwable $erro) {
+        $_SESSION['chamado_status'] = [false, 'Erro, Tente Novamente!'];
+        header('Location: /controlesaidas/Views/pages/editarChamados.php');
     }
 }
