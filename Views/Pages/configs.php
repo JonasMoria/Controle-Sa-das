@@ -1,11 +1,14 @@
 <?php
 session_start();
-require_once(__DIR__ . '../../../Models/Database/usuarioDB.php');
+require(__DIR__ . '../../../Models/Database/UsuarioDB.php');
 
 if (isset($_SESSION['autorizado']) != true) {
     header('Location: /controlesaidas/index.php');
     exit(session_destroy());
 }
+
+$usuarioDB = new UsuarioDB();
+$usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -39,6 +42,15 @@ if (isset($_SESSION['autorizado']) != true) {
             <div class="minhaConta col-md-6 col-sm-10" style="margin-right: 4%">
                 <form action="../../Controllers/UsuarioController.php" method="post">
                     <div class="col-12 row">
+                        <?php
+                        if (isset($_SESSION['update_cad_status']) && $_SESSION['update_cad_status'][0] == false) {
+                            $msg = $_SESSION['update_cad_status'][1];
+                            echo "<div class='alert alert-danger text-center alert-dismissible fade show' role='alert'>
+                                    <strong>$msg</strong>
+                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                  </div>";
+                        }
+                        ?>
                         <div class="col-12 text-center">
                             <h5>Meu Perfil</h5>
                             <hr>
@@ -47,8 +59,9 @@ if (isset($_SESSION['autorizado']) != true) {
                             <img src="../../Content/icones/conta.svg" class="img-conta" alt="conta" style="width: 100%;">
                         </div>
                         <div class="col-8">
-                            <input type="text" value="nome" class="input-conta">
-                            <input type="text" value="email" class="input-conta">
+                            <input type="text" name="nome" value="<?php echo $_SESSION['dados_editar'][0] ?>" class="input-conta">
+                            <input type="text" name="email" value="<?php echo $_SESSION['dados_editar'][1];
+                                                                    unset($_SESSION['dados_editar'][1]); ?>" class="input-conta">
                             <button class="btn btn-sm btn-alterarDados" style="background-color:#4682B4; color:white;" name="btn-alterarDados">Alterar</button>
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 <?php
 
+use FTP\Connection;
+
 require('ConnectionDB.php');
 
 class UsuarioDB
@@ -62,9 +64,6 @@ class UsuarioDB
         }
     }
 
-
-
-
     function getUser($email)
     {
         $connect = new ConnectionDB();
@@ -74,5 +73,54 @@ class UsuarioDB
         $data = mysqli_fetch_array($result);
 
         return $data;
+    }
+
+    function getDadosUsuario($id)
+    {
+
+        $connect = new ConnectionDB();
+
+        $query = "select usu_nome,usu_email from usuarios where usu_id = $id";
+        $result = mysqli_query($connect->connect(), $query);
+
+        $list = mysqli_fetch_assoc($result);
+        $total = mysqli_num_rows($result);
+
+        $dados = [];
+
+        if ($total > 0) {
+            do {
+
+                $nome  = $list['usu_nome'];
+                $email = $list['usu_email'];
+
+                $dados = [$nome, $email];
+            } while ($list = mysqli_fetch_assoc($result));
+        }
+
+        $_SESSION['dados_editar'] = $dados;
+    }
+
+    function alterarCadastro($nome, $email, $id)
+    {
+
+        try {
+
+            $connect = new ConnectionDB();
+
+            $nome = mysqli_real_escape_string($connect->connect(), $nome);
+            $email = mysqli_real_escape_string($connect->connect(), $email);
+
+            $sql = "update usuarios set usu_nome = '$nome', usu_email = '$email' where usu_id = $id";
+
+            if (mysqli_query($connect->connect(), $sql)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (mysqli_sql_exception $th) {
+            throw new Exception('Falha ao Atualizar Dados, Tente Novamente!');  
+        }
     }
 }
