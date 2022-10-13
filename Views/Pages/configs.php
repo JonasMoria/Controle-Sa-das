@@ -39,7 +39,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
 
         <section class="col-12 row box-configs">
 
-            <div class="minhaConta col-md-6 col-sm-10" style="margin-right: 4%">
+            <div class="minhaConta col-md-5 col-sm-10">
                 <form action="../../Controllers/UsuarioController.php" method="post">
                     <div class="col-12 row">
                         <?php
@@ -88,7 +88,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                 </form>
             </div>
 
-            <div class="minhaConta col-md-5 col-sm-10" style="margin-top: 4%; margin-right:5%;">
+            <div class="minhaConta col-md-5 col-sm-10">
                 <form action="../../Controllers/UsuarioController.php" method="post">
                     <div class="col-12 row">
                         <div class="col-12 text-center">
@@ -105,7 +105,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                 </form>
             </div>
 
-            <div class="minhaConta col-md-6 col-sm-10" style="margin-top: 4%;">
+            <div class="minhaConta col-md-5 col-sm-10">
                 <div class="col-12 row">
                     <div class="col-12 text-center">
                         <h5>Excluir Conta</h5>
@@ -139,7 +139,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                         <input type="password" name="senhaExcluir" class="form-control text-center" placeholder="digite sua senha..." required>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-danger" name="btn-excluir">Excluir Conta</button>
                     </div>
                 </div>
