@@ -1,8 +1,7 @@
 <?php
 
-use FTP\Connection;
-
 require('ConnectionDB.php');
+//require(__DIR__.'../../Usuario.php');
 
 class UsuarioDB
 {
@@ -118,9 +117,41 @@ class UsuarioDB
             } else {
                 return false;
             }
-
         } catch (mysqli_sql_exception $th) {
-            throw new Exception('Falha ao Atualizar Dados, Tente Novamente!');  
+            throw new Exception('Falha ao Atualizar Dados, Tente Novamente!');
+        }
+    }
+
+    function alterarSenha($senhaAntiga, $senhaNova, $id)
+    {
+
+        try {
+
+            $connect = new ConnectionDB();
+            $usuario = new Usuario();
+
+            $senhaAntiga = mysqli_real_escape_string($connect->connect(), hash('sha512', $senhaAntiga));
+            $senhaNova = mysqli_real_escape_string($connect->connect(), hash('sha512', $senhaNova));
+
+            $sql_getSenha = "select usu_senha from usuarios where usu_id = $id";
+            $resultado = mysqli_query($connect->connect(), $sql_getSenha);
+            $get = mysqli_fetch_array($resultado);
+
+            $senhaBD = $get[0];
+
+            if ($usuario->verificaSenha($senhaBD, $senhaAntiga)) {
+                $sql = "update usuarios set usu_senha = '$senhaNova' where usu_id = $id";
+                if (mysqli_query($connect->connect(), $sql)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                throw new Exception("Senhas Divergentes! Tente Novamente...");
+            }
+        } catch (mysqli_sql_exception $th) {
+            echo $th->getMessage();
         }
     }
 }
+

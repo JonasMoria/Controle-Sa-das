@@ -76,8 +76,8 @@ if (isset($_POST['btnLogin'])) {
 if (isset($_POST['btn-alterarDados'])) {
 
     $id = $_SESSION['dados_usuario'][1];
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
+    $nome = trim($_POST['nome']);
+    $email = strtoupper(trim($_POST['email']));
 
     try {
 
@@ -99,6 +99,30 @@ if (isset($_POST['btn-alterarDados'])) {
     }
 }
 
+//Alterar Senha
+if (isset($_POST['btn-alterarSenha'])) {
+
+    try {
+
+        $id = $_SESSION['dados_usuario'][1];
+        $senhaAntiga = trim($_POST['senhaAntiga']);
+        $senhaNova = trim($_POST['senhaNova']);
+        $confNovaSenha = trim($_POST['confNovaSenha']);
+
+        $usuarioDB = new UsuarioDB();
+        $usuario = new Usuario();
+
+        if ($usuario->verificaSenha($senhaNova, $confNovaSenha)) {
+            if ($usuarioDB->alterarSenha($senhaAntiga, $senhaNova, $id)) {
+                $_SESSION['update_cad_status'] = [true, 'Senha Alterada Com Sucesso!'];
+                exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+            }
+        }
+    } catch (Throwable $erro) {
+        $_SESSION['update_cad_status'] = [false, $erro->getMessage()];
+        exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+    }
+}
 
 function validaDados($nome, $email)
 {

@@ -38,19 +38,29 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
         <hr>
 
         <section class="col-12 row box-configs">
+            <div class="col-6" style="margin-left: 20%;">
+                <?php
+                if (isset($_SESSION['update_cad_status']) && $_SESSION['update_cad_status'][0] == false) {
+                    $msg = $_SESSION['update_cad_status'][1];
+                    echo "<div class='alert alert-danger text-center alert-dismissible fade show' role='alert'>
+                                    <strong>$msg</strong>
+                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                  </div>";
+                }
+                if (isset($_SESSION['update_cad_status']) && $_SESSION['update_cad_status'][0] == true) {
+                    $msg = $_SESSION['update_cad_status'][1];
+                    echo "<div class='alert alert-success text-center alert-dismissible fade show' role='alert'>
+                                    <strong>$msg</strong>
+                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                  </div>";
+                }
+                unset($_SESSION['update_cad_status']);
+                ?>
+            </div>
 
             <div class="minhaConta col-md-5 col-sm-10">
                 <form action="../../Controllers/UsuarioController.php" method="post">
                     <div class="col-12 row">
-                        <?php
-                        if (isset($_SESSION['update_cad_status']) && $_SESSION['update_cad_status'][0] == false) {
-                            $msg = $_SESSION['update_cad_status'][1];
-                            echo "<div class='alert alert-danger text-center alert-dismissible fade show' role='alert'>
-                                    <strong>$msg</strong>
-                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                  </div>";
-                        }
-                        ?>
                         <div class="col-12 text-center">
                             <h5>Meu Perfil</h5>
                             <hr>
