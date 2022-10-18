@@ -41,6 +41,25 @@ body {
     margin-left: 20%;
 }
 
+.bkpButtons {
+    text-align: center;
+    background-color: #229954;
+    border-radius: 7px;
+    padding: 10%;
+}
+
+.bkpButtons:hover {
+    margin: 2%;
+}
+
+.bkpButtons span {
+    color: white;
+}
+
+.box-btnButtons {
+    border: none;
+}
+
 @media screen and (max-width: 600px) {
     .box-configs {
         padding-right: 10%;

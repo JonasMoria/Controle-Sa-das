@@ -124,9 +124,44 @@ if (isset($_POST['btn-alterarSenha'])) {
     }
 }
 
+//Fazer backup chamados
+if (isset($_POST['btn-bkpChamado'])) {
+    try {
+        $usuario = new UsuarioDB();
+        $id = $_SESSION['dados_usuario'][1];
+        $usuario->bkpChamados($id);
+    } catch (\Throwable $th) {
+        $_SESSION['update_cad_status'] = [false, 'Erro Ao Gerar Backup!'];
+        exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+    }
+}
+
+//Fazer backup Saidas
+if (isset($_POST['btn-bkpSaida'])) {
+    try {
+        $usuario = new UsuarioDB();
+        $id = $_SESSION['dados_usuario'][1];
+        $usuario->bkpSaidas($id);
+    } catch (\Throwable $th) {
+        $_SESSION['update_cad_status'] = [false, 'Erro Ao Gerar Backup!'];
+        exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+    }
+}
+
+//Fazer backup Departamentos
+if (isset($_POST['btn-bkpDept'])) {
+    try {
+        $usuario = new UsuarioDB();
+        $id = $_SESSION['dados_usuario'][1];
+        $usuario->bkpDepartamentos($id);
+    } catch (\Throwable $th) {
+        $_SESSION['update_cad_status'] = [false, 'Erro Ao Gerar Backup!'];
+        exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+    }
+}
+
 function validaDados($nome, $email)
 {
-
     if (!empty($nome) && !is_null($nome)) {
         if (!empty($email) && !is_null($email)) {
             return true;

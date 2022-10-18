@@ -99,20 +99,18 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
             </div>
 
             <div class="minhaConta col-md-5 col-sm-10">
-                <form action="../../Controllers/UsuarioController.php" method="post">
-                    <div class="col-12 row">
-                        <div class="col-12 text-center">
-                            <h5>Backup</h5>
-                            <hr>
-                        </div>
-                        <div class="col-5 box-img-conta">
-                            <img src="../../Content/icones/backup.svg" class="img-conta" alt="conta" style="width: 40%;">
-                        </div>
-                        <div class="col-7" style="margin-top: 2%;">
-                            <button class="btn btn-sm btn-alterarDados" style="background-color:#229954; color:white;" name="btn-backup">Fazer backup</button>
-                        </div>
+                <div class="col-12 row">
+                    <div class="col-12 text-center">
+                        <h5>Backup</h5>
+                        <hr>
                     </div>
-                </form>
+                    <div class="col-5 box-img-conta">
+                        <img src="../../Content/icones/backup.svg" class="img-conta" alt="conta" style="width: 40%;">
+                    </div>
+                    <div class="col-7" style="margin-top: 2%;">
+                        <button class="btn btn-sm btn-alterarDados" style="background-color:#229954; color:white;" data-bs-toggle="modal" data-bs-target="#mdlBackup">Fazer backup</button>
+                    </div>
+                </div>
             </div>
 
             <div class="minhaConta col-md-5 col-sm-10">
@@ -151,6 +149,42 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-danger" name="btn-excluir">Excluir Conta</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal Escolher Backup -->
+    <div class="modal fade" id="mdlBackup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <form action="../../Controllers/UsuarioController.php" method="post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">SELECIONAR BACKUP</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="col-12 row">
+                            <button class="col-4 box-btnButtons" name="btn-bkpChamado">
+                                <figure class="bkpButtons">
+                                    <img src="../../Content/icones/chamados.svg" alt="chamados"><br>
+                                    <span>Chamados</span>
+                                </figure>
+                            </button>
+                            <button class="col-4 box-btnButtons" name="btn-bkpSaida">
+                                <figure class="bkpButtons">
+                                    <img src="../../Content/icones/saidas.svg" alt="Saídas"><br>
+                                    <span>Saídas</span>
+                                </figure>
+                            </button>
+                            <button class="col-4 box-btnButtons" name="btn-bkpDept">
+                                <figure class="bkpButtons">
+                                    <img src="../../Content/icones/dept.svg" alt="Departamentos">
+                                    <span>Departamentos</span>
+                                </figure>
+                            </button>
+                        </section>
                     </div>
                 </div>
             </div>

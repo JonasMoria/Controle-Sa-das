@@ -150,8 +150,82 @@ class UsuarioDB
                 throw new Exception("Senhas Divergentes! Tente Novamente...");
             }
         } catch (mysqli_sql_exception $th) {
-            echo $th->getMessage();
+            return $th->getMessage();
+        }
+    }
+
+    function bkpDepartamentos($id)
+    {
+        try {
+            date_default_timezone_set('America/Sao_Paulo');
+            $nomeArq = 'bkpDep' . date('d/m/Y_H:i');
+
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $nomeArq . '.csv');
+
+            $connect = new ConnectionDB();
+
+            $saida = fopen('php://output', 'w');
+            fputcsv($saida, array('ID', 'USU_ID', 'NOME', 'RESPONSAVEL', 'TELEFONE', 'EMAIL'));
+            $sqlDept = "select * from departamentos where usu_id = $id";
+            $linhas = mysqli_query($connect->connect(), $sqlDept);
+
+            while ($linha = mysqli_fetch_assoc($linhas)) {
+                fputcsv($saida, $linha);
+            };
+        } catch (Throwable $th) {
+            return $th;
+        }
+    }
+
+    function bkpSaidas($id)
+    {
+        try {
+            date_default_timezone_set('America/Sao_Paulo');
+            $nomeArq = 'bkpSaida' . date('d/m/Y_H:i');
+
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $nomeArq . '.csv');
+
+            $connect = new ConnectionDB();
+
+            $saida = fopen('php://output', 'w');
+            fputcsv($saida, array('ID', 'SAIDA_ID', 'DATA', 'DEPARTAMENTO', 'PRODUTO', 'OBSERVAÇÃO'));
+            $sqlDept = "select * from saidas where usu_id = $id";
+            $linhas = mysqli_query($connect->connect(), $sqlDept);
+
+            while ($linha = mysqli_fetch_assoc($linhas)) {
+                fputcsv($saida, $linha);
+            };
+        } catch (Throwable $th) {
+            return $th;
+        }
+    }
+
+    function bkpChamados($id)
+    {
+        try {
+            date_default_timezone_set('America/Sao_Paulo');
+            $nomeArq = 'bkpCham' . date('d/m/Y_H:i');
+
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $nomeArq . '.csv');
+
+            $connect = new ConnectionDB();
+
+            $saida = fopen('php://output', 'w');
+            fputcsv($saida, array('ID', 'USUARIO_ID', 'DATA', 'PRODUTO', 'OBSERVAÇÃO', 'STATUS', 'DEPARTAMENTO'));
+            $sqlDept = "select * from chamados where usu_id = $id";
+            $linhas = mysqli_query($connect->connect(), $sqlDept);
+
+            while ($linha = mysqli_fetch_assoc($linhas)) {
+                fputcsv($saida, $linha);
+            };
+
+            return true;
+            
+        } catch (Throwable $th) {
+            return $th;
         }
     }
 }
-
