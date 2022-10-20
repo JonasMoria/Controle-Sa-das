@@ -21,7 +21,7 @@ session_start();
             <div class="welcome">
                 <h1>Olá! Bem Vindo(a)</h1>
                 <h6>Sistema de Controle de Saídas</h6>
-                <img src="Views/Images/index_logo.png" class="img-logo img-fluid" alt="Logo">
+                <img src="Views/Images/index_logo(pref).png" class="img-logo img-fluid" alt="Logo">
             </div>
             <div class="register">
                 <h5>Ainda não possui cadastro?</h5>

@@ -81,8 +81,8 @@ if (!isset($_SESSION)) {
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">DATA</th>
-                        <th scope="col">PRODUTO</th>
+                        <th scope="col" style="width: 10%;">DATA</th>
+                        <th scope="col">DEFEITO</th>
                         <th scope="col">OBS</th>
                         <th scope="col">SETOR</th>
                         <th scope="col">STATUS</th>
@@ -262,7 +262,7 @@ if (!isset($_SESSION)) {
                                 </select>
                             </div>
                             <div class="form-group col-12">
-                                <label>Produto<strong style="color: red;">*</strong></label>
+                                <label>Defeito<strong style="color: red;">*</strong></label>
                                 <input type="text" class="form-control" name="chamado_produto" required>
                             </div>
                             <div class="form-group col-12">

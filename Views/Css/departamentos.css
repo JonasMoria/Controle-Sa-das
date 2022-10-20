@@ -36,7 +36,20 @@ body{
     width: 45%;
     margin-right: 5%;
 }
+.ocultarImprimir {
+    box-sizing: border-box;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
+.ocultarImprimir a {
+    margin-top: 4%;
+    margin-left: 10%;
+    width: 100%;
+    text-align: center;
+}
 .inputPesquisa {
     float: right;
     margin-right: 3%;

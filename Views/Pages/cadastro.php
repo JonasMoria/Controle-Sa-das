@@ -21,7 +21,7 @@ session_start();
             <div class="welcome">
                 <h1>Cadastre-se!!</h1>
                 <h6>Sistema de Controle de Saídas</h6>
-                <img src="/controlesaidas/Views/Images/cadastro_logo.png" class="img-logo img-fluid" alt="Logo">
+                <img src="/controlesaidas/Views/Images/index_logo(pref).png" class="img-logo img-fluid" alt="Logo">
             </div>
             <div class="login">
                 <h5>Já possui cadastro?</h5>

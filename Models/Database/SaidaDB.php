@@ -83,8 +83,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
             } while ($list = mysqli_fetch_assoc($result));
@@ -126,8 +126,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
             } while ($list = mysqli_fetch_assoc($result));
@@ -171,8 +171,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
             } while ($list = mysqli_fetch_assoc($result));
@@ -214,8 +214,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
             } while ($list = mysqli_fetch_assoc($result));
@@ -257,8 +257,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
             } while ($list = mysqli_fetch_assoc($result));
@@ -300,8 +300,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
                 } while ($list = mysqli_fetch_assoc($result));
@@ -350,8 +350,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
                 } while ($list = mysqli_fetch_assoc($result));
@@ -400,8 +400,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
                 } while ($list = mysqli_fetch_assoc($result));
@@ -450,8 +450,8 @@ class SaidaDB
                             <td>$produto</td>
                             <td class='table-observacao'>$observacao</td>
                             <td class='col-12 row ocultarImprimir'>
-                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                             </td>
                             </tr>";
                 } while ($list = mysqli_fetch_assoc($result));
@@ -500,8 +500,8 @@ class SaidaDB
                                 <td>$produto</td>
                                 <td class='table-observacao'>$observacao</td>
                                 <td class='col-12 row ocultarImprimir'>
-                                    <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                                    <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                                    <a href='../../Controllers/SaidaController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                                    <a href='../../Controllers/SaidaController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                                 </td>
                                 </tr>";
                 } while ($list = mysqli_fetch_assoc($result));
@@ -523,22 +523,20 @@ class SaidaDB
 
         $list = mysqli_fetch_assoc($result);
         $total = mysqli_num_rows($result);
-        
+
         $dados = [];
 
         if ($total > 0) {
             do {
-                
+
                 $dia = $list['dia'];
                 $mes = $list['mes'];
                 $ano = $list['ano'];
                 $dep = $list['sai_departamento'];
                 $produto = $list['sai_produto'];
                 $obs = $list['sai_observacao'];
-                
-                $dados = [$dia,$mes,$ano,$dep,$produto,$obs];
-         
 
+                $dados = [$dia, $mes, $ano, $dep, $produto, $obs];
             } while ($list = mysqli_fetch_assoc($result));
         }
 
@@ -546,10 +544,11 @@ class SaidaDB
     }
 
     //Alterar Dados da Saída
-    function alterarSaida(Saida $saida,$id) {
-        
+    function alterarSaida(Saida $saida, $id)
+    {
+
         try {
-            
+
             $connect = new ConnectionDB();
 
             $dia = mysqli_real_escape_string($connect->connect(), $saida->getDia());
@@ -558,40 +557,38 @@ class SaidaDB
             $departamento = mysqli_real_escape_string($connect->connect(), $saida->getDepartamento());
             $produto = mysqli_real_escape_string($connect->connect(), $saida->getProduto());
             $obs = mysqli_real_escape_string($connect->connect(), $saida->getObservacao());
-            
+
             $data = $ano . "-" . $mes . "-" . $dia;
-    
+
             $sql = "update saidas set sai_departamento = '$departamento', sai_data = '$data', sai_produto = '$produto',
             sai_observacao = '$obs' where sai_id = $id";
-    
+
             if (mysqli_query($connect->connect(), $sql)) {
                 return true;
             } else {
                 return false;
             }
         } catch (mysqli_sql_exception $th) {
-            throw new Exception('Valores Inválidos, Insira Novamente!');  
+            throw new Exception('Valores Inválidos, Insira Novamente!');
         }
     }
 
     // Deletar Uma Saída
-    function deletarSaida($idSaida,$id) {
+    function deletarSaida($idSaida, $id)
+    {
 
         try {
-            
+
             $connect = new ConnectionDB();
             $query = "delete from saidas where sai_id = $idSaida and usu_id = $id";
-    
+
             if (mysqli_query($connect->connect(), $query)) {
                 return true;
             } else {
                 throw new Exception('Falha ao Excluir Saída!!');
             }
-
         } catch (mysqli_sql_exception $th) {
             throw new Exception('Falha ao Excluir Saída!!');
         }
-
     }
-    
 }

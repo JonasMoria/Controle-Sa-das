@@ -37,12 +37,18 @@
 }
 
 .ocultarImprimir {
-    display: inline-flex;
-    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
+
 .ocultarImprimir a {
-  width: 47%;
-  margin: 1.5%;
+    margin-top: 4%;
+    margin-left: 20%;
+    width: 100%;
+    text-align: center;
 }
 
 .table-responsive {
@@ -75,8 +81,6 @@
         margin-top: 2%;
     }
     .table-observacao {
-        
-
         overflow-wrap: normal;  
         word-wrap: normal; 
         word-break: normal;

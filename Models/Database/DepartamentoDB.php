@@ -79,8 +79,8 @@ class DepartamentoDB {
             <td>$telefone</td>
             <td>$email</td>
             <td class='col-12 row ocultarImprimir'>
-               <a href='../../Controllers/DepartamentoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-               <a href='../../Controllers/DepartamentoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+               <a href='../../Controllers/DepartamentoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+               <a href='../../Controllers/DepartamentoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
             </td>
             </tr>
             ";
@@ -159,8 +159,8 @@ class DepartamentoDB {
              <td>$telefone</td>
              <td>$email</td>
              <td class='col-12 row ocultarImprimir'>
-             <a href='../../Controllers/DepartamentoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-             <a href='../../Controllers/DepartamentoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+             <a href='../../Controllers/DepartamentoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao btn-success '><img src='../../Content/icones/editar.svg' alt='editar'></a>
+             <a href='../../Controllers/DepartamentoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao btn-danger '><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
              </td>
              </tr>
              ";

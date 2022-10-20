@@ -11,7 +11,7 @@ body {
 }
 
 .welcome h1 {
-    color: rgb(233, 0, 17);
+    color: rgb(46, 134, 193);
 }
 
 .welcome h6 {
@@ -24,10 +24,11 @@ body {
 }
 
 .register a {
-    background-color: rgb(233, 0, 17);
+    background-color: rgb(46, 134, 193);
     color: white;
     width: 30%;
     border: none;
+    box-shadow: 2px 2px 2px 2px gray;
 }
 
 .login {
@@ -43,7 +44,7 @@ body {
 }
 
 .login h2 {
-    color: rgb(233, 0, 17);
+    color: rgb(46, 134, 193);
     text-align: center;
 }
 
@@ -54,7 +55,7 @@ body {
 .login input {
     background-color: transparent !important;
     border: none;
-    border-bottom: 2px solid rgb(233, 0, 17);
+    border-bottom: 2px solid rgb(46, 134, 193);
     border-radius: 0px 5px 5px 0px;
 }
 
@@ -65,13 +66,14 @@ body {
 }
 
 .button {
-    background-color: rgb(233, 0, 17)!important;
-    color: white!important;
+    background-color: rgb(46, 134, 193) !important;
+    color: white !important;
     margin-top: 3%;
     width: 40%;
+    box-shadow: 2px 2px 2px 2px gray;
 }
 
 .button:hover {
-   transition: 0.5s;
-   background-color: green!important;
+    transition: 0.5s;
+    background-color: green !important;
 }

@@ -81,10 +81,10 @@ class ChamadoDB
                     <td>$produto</td>
                     <td>$obs</td>
                     <td>$dept</td>
-                    <td>$status</td>
+                    <td class='td-status fw-bold text-uppercase'>$status</td>
                     <td class='col-12 row ocultarImprimir'>
-                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm  btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btn-sm btnAcao  btn-danger'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                     </td>
                     </tr>
                     ";
@@ -126,10 +126,10 @@ class ChamadoDB
                         <td>$produto</td>
                         <td>$obs</td>
                         <td>$dept</td>
-                        <td class='td-status'>$status</td>
+                        <td class='td-status fw-bold text-uppercase'>$status</td>
                         <td class='col-12 row ocultarImprimir'>
-                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                         </td>
                         </tr>
                         ";
@@ -178,10 +178,10 @@ class ChamadoDB
                         <td>$produto</td>
                         <td>$obs</td>
                         <td>$dept</td>
-                        <td class='td-status'>$status</td>
+                        <td class='td-status fw-bold text-uppercase'>$status</td>
                         <td class='col-12 row ocultarImprimir'>
-                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                         </td>
                         </tr>
                         ";
@@ -230,10 +230,10 @@ class ChamadoDB
                         <td>$produto</td>
                         <td>$obs</td>
                         <td>$dept</td>
-                        <td class='td-status'>$status</td>
+                        <td class='td-status fw-bold text-uppercase'>$status</td>
                         <td class='col-12 row ocultarImprimir'>
-                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                         </td>
                         </tr>
                         ";
@@ -281,10 +281,10 @@ class ChamadoDB
                         <td>$produto</td>
                         <td>$obs</td>
                         <td>$dept</td>
-                        <td class='td-status'>$status</td>
+                        <td class='td-status fw-bold text-uppercase'>$status</td>
                         <td class='col-12 row ocultarImprimir'>
-                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                         </td>
                         </tr>
                         ";
@@ -331,10 +331,10 @@ class ChamadoDB
                         <td>$produto</td>
                         <td>$obs</td>
                         <td>$dept</td>
-                        <td class='td-status'>$status</td>
+                        <td class='td-status fw-bold text-uppercase'>$status</td>
                         <td class='col-12 row ocultarImprimir'>
-                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                         </td>
                         </tr>
                         ";
@@ -380,10 +380,10 @@ class ChamadoDB
                     <td>$produto</td>
                     <td>$obs</td>
                     <td>$dept</td>
-                    <td class='td-status'>$status</td>
+                    <td class='td-status fw-bold text-uppercase'>$status</td>
                     <td class='col-12 row ocultarImprimir'>
-                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                     </td>
                     </tr>
                     ";
@@ -429,10 +429,10 @@ class ChamadoDB
                     <td>$produto</td>
                     <td>$obs</td>
                     <td>$dept</td>
-                    <td class='td-status'>$status</td>
+                    <td class='td-status fw-bold text-uppercase'>$status</td>
                     <td class='col-12 row ocultarImprimir'>
-                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                     </td>
                     </tr>
                     ";
@@ -473,10 +473,10 @@ class ChamadoDB
                     <td>$produto</td>
                     <td>$obs</td>
                     <td>$dept</td>
-                    <td class='td-status'>$status</td>
+                    <td class='td-status fw-bold text-uppercase'>$status</td>
                     <td class='col-12 row ocultarImprimir'>
-                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                     </td>
                     </tr>
                     ";
@@ -517,10 +517,10 @@ class ChamadoDB
                     <td>$produto</td>
                     <td>$obs</td>
                     <td>$dept</td>
-                    <td class='td-status'>$status</td>
+                    <td class='td-status fw-bold text-uppercase'>$status</td>
                     <td class='col-12 row ocultarImprimir'>
-                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                    <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                    <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                     </td>
                     </tr>
                     ";
@@ -561,10 +561,10 @@ class ChamadoDB
                         <td>$produto</td>
                         <td>$obs</td>
                         <td>$dept</td>
-                        <td class='td-status'>$status</td>
+                        <td class='td-status fw-bold text-uppercase'>$status</td>
                         <td class='col-12 row ocultarImprimir'>
-                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                        <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                        <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                         </td>
                         </tr>
                         ";
@@ -605,10 +605,10 @@ class ChamadoDB
                                <td>$produto</td>
                                <td>$obs</td>
                                <td>$dept</td>
-                               <td class='td-status'>$status</td>
+                               <td class='td-status fw-bold text-uppercase'>$status</td>
                                <td class='col-12 row ocultarImprimir'>
-                               <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btnAcao btn-success col-md-4 col-sm-12'><img src='../../Content/icones/editar.svg' alt='editar'></a>
-                               <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btnAcao btn-danger col-md-4'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
+                               <a href='../../Controllers/ChamadoController.php?editar=" . $Id . "' class='btn btn-sm btnAcao  btn-success'><img src='../../Content/icones/editar.svg' alt='editar'></a>
+                               <a href='../../Controllers/ChamadoController.php?excluir=" . $Id . "' class='btn btn-sm btnAcao  btn-danger'col-sm-12'><img src='../../Content/icones/excluir.svg' alt='deletar'></a>
                                </td>
                                </tr>
                                ";

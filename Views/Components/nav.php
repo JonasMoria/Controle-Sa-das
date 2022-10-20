@@ -6,7 +6,7 @@
         z-index: 1;
         top: 0;
         left: 0;
-        background-color: rgb(233, 0, 17);
+        background-color: rgb(46, 134, 193);
         color: white;
         overflow-x: hidden;
         transition: 0.5s;
@@ -50,6 +50,18 @@
         left: 0px;
         text-align: center;
         width: 100%;
+    }
+
+    .btnExit {
+        font-size: 3vh;
+        font-weight: 400;
+        color: white;
+        letter-spacing: 2px;
+    }
+
+    .btnExit:hover {
+        font-size: 4vh;
+        color: red;
     }
 
     .page {
@@ -97,7 +109,7 @@
                     </button>
                 </div>
                 <div class="exit">
-                    <button type="submit" name="exit" class="btn" style="background-color: black; color:white">SAIR</button>
+                    <button type="submit" name="exit" class="btn btnExit">SAIR</button>
                 </div>
             </form>
         </div>
