@@ -160,6 +160,33 @@ if (isset($_POST['btn-bkpDept'])) {
     }
 }
 
+//Excluir Conta
+if (isset($_POST['btn-excluirConta'])) {
+
+    try {
+        $senha = trim($_POST['senhaExcluir']);
+
+        $id = $_SESSION['dados_usuario'][1];
+        $usuario = new UsuarioDB();
+
+        if ($usuario->checarSenha($senha, $id)) {
+            if ($usuario->deletarConta($id)) {
+                session_destroy();
+                exit(header('Location: /controlesaidas/index.php'));
+            } else {
+                $_SESSION['update_cad_status'] = [false, 'Erro Ao Deletar Conta!'];
+                exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+            }
+        } else {
+            $_SESSION['update_cad_status'] = [false, 'Senha Incorreta!'];
+            exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+        }
+    } catch (Throwable $th) {
+        $_SESSION['update_cad_status'] = [false, $th->getMessage()];
+        exit(header('Location: /controlesaidas/Views/pages/configs.php'));
+    }
+}
+
 function validaDados($nome, $email)
 {
     if (!empty($nome) && !is_null($nome)) {

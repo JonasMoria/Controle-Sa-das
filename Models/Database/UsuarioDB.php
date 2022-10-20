@@ -223,9 +223,55 @@ class UsuarioDB
             };
 
             return true;
-            
         } catch (Throwable $th) {
             return $th;
+        }
+    }
+
+    function deletarConta($id)
+    {
+        try {
+            $connect = new ConnectionDB();
+
+            $delDep = 'delete from departamentos where usu_id = ' . $id . '';
+            $delSai = 'delete from saidas where usu_id = ' . $id . '';
+            $delCha = 'delete from chamados where usu_id = ' . $id . '';
+            $delUsu = 'delete from usuarios where usu_id = ' . $id . '';
+
+            if (
+                mysqli_query($connect->connect(), $delDep) &&
+                mysqli_query($connect->connect(), $delSai) &&
+                mysqli_query($connect->connect(), $delCha) &&
+                mysqli_query($connect->connect(), $delUsu)
+            ) {
+                return true;
+            } else {
+                throw new Exception('Falha ao Excluir Conta!');
+            }
+        } catch (mysqli_sql_exception $th) {
+            throw new Exception($th->getMessage());
+        }
+    }
+
+    function checarSenha($senha, $id)
+    {
+        try {
+            $connect = new ConnectionDB();
+            $usuario = new Usuario();
+            $senha = mysqli_real_escape_string($connect->connect(), hash('sha512', $senha));
+            $sql_getSenha = "select usu_senha from usuarios where usu_id = $id";
+            $resultado = mysqli_query($connect->connect(), $sql_getSenha);
+            $get = mysqli_fetch_array($resultado);
+
+            $senhaBD = $get[0];
+
+            if ($usuario->verificaSenha($senhaBD, $senha)) {
+                return true;
+            } else {
+                throw new Exception("Senhas Divergentes! Tente Novamente...");
+            }
+        } catch (Throwable $th) {
+            throw new Exception($th->getMessage());
         }
     }
 }

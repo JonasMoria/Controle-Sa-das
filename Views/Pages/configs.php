@@ -148,7 +148,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-danger" name="btn-excluir">Excluir Conta</button>
+                        <button type="submit" class="btn btn-danger" name="btn-excluirConta">Excluir Conta</button>
                     </div>
                 </div>
             </div>
