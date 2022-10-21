@@ -123,9 +123,9 @@ if (!isset($_SESSION)) {
                         <div class="form-group col-12 row">
                             <div class="col-9 row">
                                 <div class="form-group row">
-                                    <div class="col-4"> <input type="number" class="form-control" name="pesquisa_dia" min="1" max="31" placeholder="Dia"> </div>
-                                    <div class="col-4"> <input type="number" class="form-control" name="pesquisa_mes" min="1" max="12" placeholder="Mês"> </div>
-                                    <div class="col-4"> <input type="number" class="form-control" name="pesquisa_ano" min="1900" placeholder="Ano"> </div>
+                                    <div class="col-md-4 col-sm-12 mt-4"> <input type="number" class="form-control" name="pesquisa_dia" min="1" max="31" placeholder="Dia"> </div>
+                                    <div class="col-md-4 col-sm-12 mt-4"> <input type="number" class="form-control" name="pesquisa_mes" min="1" max="12" placeholder="Mês"> </div>
+                                    <div class="col-md-4 col-sm-12 mt-4"> <input type="number" class="form-control" name="pesquisa_ano" min="1900" placeholder="Ano"> </div>
                                 </div>
                             </div>
                             <div class="col-3 text-center">
@@ -203,13 +203,13 @@ if (!isset($_SESSION)) {
                     <h5 class="modal-title text-center mt-4">Ordenar Por:</h5>
                     <form action="../../Controllers/ChamadoController.php" method="post">
                         <section class="col-12 mt-3 text-center row">
-                            <div class="col-4">
+                            <div class="col-md-4 col-sm-12 mt-4">
                                 <button class="btn btn-success btn-sm" name="ordena_crescente"><img src="../../Content/icones/recente.svg">Antigo</button>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-4 col-sm-12 mt-4">
                                 <button class="btn btn-success btn-sm" name="ordena_decrescente"> <img src="../../Content/icones/antigo.svg" alt="antigo">Recente</button>
                             </div>
-                            <div class="col-4">
+                            <div class="col-md-4 col-sm-12 mt-4">
                                 <button class="btn btn-success btn-sm" name="ordena_alfabeto"> <img src="../../Content/icones/alfabetica.svg" alt="alfabética"> Alfabética</button>
                             </div>
                         </section>
@@ -239,15 +239,15 @@ if (!isset($_SESSION)) {
                     <form action="../../Controllers/ChamadoController.php" method="post">
                         <section class="row">
                             <div class="col-12 row">
-                                <div class="form-group col-4">
+                                <div class="form-group col-md-4 col-sm-12 mt-4">
                                     <label>Dia<strong style="color: red;">*</strong></label>
                                     <input type="number" class="form-control" name="chamado_dia" min="1" max="31" required>
                                 </div>
-                                <div class="form-group col-4">
+                                <div class="form-group col-md-4 col-sm-12 mt-4">
                                     <label>Mês<strong style="color: red;">*</strong></label>
                                     <input type="number" class="form-control" name="chamado_mes" min="1" max="12" required>
                                 </div>
-                                <div class="form-group col-4">
+                                <div class="form-group col-md-4 col-sm-12 mt-4">
                                     <label>Ano<strong style="color: red;">*</strong></label>
                                     <input type="number" class="form-control" name="chamado_ano" min="1900" required>
                                 </div>
@@ -263,7 +263,7 @@ if (!isset($_SESSION)) {
                             </div>
                             <div class="form-group col-12">
                                 <label>Defeito<strong style="color: red;">*</strong></label>
-                                <input type="text" class="form-control" name="chamado_produto" required>
+                                <textarea type="text" class="form-control" name="chamado_produto" required></textarea>
                             </div>
                             <div class="form-group col-12">
                                 <label>Observação Técnica<strong style="color: red;">*</strong></label>

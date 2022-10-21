@@ -9,17 +9,12 @@ body {
     font-weight: 700;
 }
 
-.box-configs {
-    margin-left: 1%;
-}
-
 .minhaConta {
     border-radius: 10px;
     box-shadow: 1px 3px 3px 3px gray;
-
+    width: 95%;
     padding: 2%;
-
-    margin: 3%;
+    margin: 2%;
 }
 
 .box-img-conta {
@@ -58,14 +53,4 @@ body {
 
 .box-btnButtons {
     border: none;
-}
-
-@media screen and (max-width: 600px) {
-    .box-configs {
-        padding-right: 10%;
-    }
-
-    .minhaContaSeg {
-        margin-top: 5%;
-    }
 }

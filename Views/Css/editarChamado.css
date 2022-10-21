@@ -1,30 +1,46 @@
-body{
-    overflow-x:hidden;
+body {
+    overflow-x: hidden;
 }
+
 .pagina-local {
     margin-left: 40%;
     margin-right: 40%;
     width: 20%;
     font-weight: 700;
 }
+
 .box-editarChamado {
     margin-left: 10%;
     margin-right: 10%;
     width: 80%;
 }
+
 .box-editarChamado label {
     margin-top: 1%;
 }
-.box-botoesAcao {
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
 
-    display: flex;
-    align-content: space-between;
+.box-botoesAcao {
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 2%;
+    width: 30%;
 }
 
-.btn-acao {
-    width: 33.3%;
-    margin-top: 2%;
+.box-botoesAcao a, .box-botoesAcao button{
+    width: 100%;
+}
+
+
+@media screen and (max-width: 600px) {
+    .box-botoesAcao {
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+    }
+
+    .box-.box-editarChamado {
+        margin-left: 2%;
+        margin-right: 2%;
+        width: 96%;
+    }
 }

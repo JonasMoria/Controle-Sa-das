@@ -44,41 +44,50 @@ if (isset($_SESSION['dados_saida_E'])) {
             <form action="../../Controllers/SaidaController.php" method="POST">
                 <?php
 
-                if (isset($_SESSION['saida_status']) && $_SESSION['saida_status'][0] == true ) {
+                if (isset($_SESSION['saida_status']) && $_SESSION['saida_status'][0] == true) {
                     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
                        <strong>Saída Atualizada!</strong>
                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                       </div>";
                 }
-                if (isset($_SESSION['saida_status']) && $_SESSION['saida_status'][0] == false ) {
+                if (isset($_SESSION['saida_status']) && $_SESSION['saida_status'][0] == false) {
                     $erro = $_SESSION['saida_status'][1];
                     echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
                        <strong>$erro</strong>
                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                       </div>";
                 }
-                
+
                 unset($_SESSION['saida_status']);
                 ?>
                 <section class='form-group col-12 row'>
-                    <label><strong>Data</strong></label>
-                    <div class='col-4'> <input type='number' class='form-control' name='saida_diaE' min='1' max='31' value="<?php echo $dados[0] ?>"> </div>
-                    <div class='col-4'> <input type='number' class='form-control' name='saida_mesE' min='1' max='12' value="<?php echo $dados[1] ?>"> </div>
-                    <div class='col-4'> <input type='number' class='form-control' name='saida_anoE' min='1900' value="<?php echo $dados[2] ?>"> </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <label><strong>Data</strong></label>
+                            <div class='col-4'> <input type='number' class='form-control' name='saida_diaE' min='1' max='31' value="<?php echo $dados[0] ?>"> </div>
+                            <div class='col-4'> <input type='number' class='form-control' name='saida_mesE' min='1' max='12' value="<?php echo $dados[1] ?>"> </div>
+                            <div class='col-4'> <input type='number' class='form-control' name='saida_anoE' min='1900' value="<?php echo $dados[2] ?>"> </div>
+                        </div>
                     </div>
-                    <div class='form-group col-12'>
-                        <label><strong>Departamento</strong></label>
-                        <select class="form-select" name="saida_departamentoE" aria-label="Default select example">
-                            <option value="<?php echo $dados[3]?>"><?php echo $dados[3] ?></option>
-                            <?php
-                              $saidaDB->listarDepartamentos($id);
-                            ?>
-                        </select>
+
+                    <div class="col-md-6 col-sm-12">
+                        <div class='form-group col-12'>
+                            <label><strong>Departamento</strong></label>
+                            <select class="form-select" name="saida_departamentoE" aria-label="Default select example">
+                                <option value="<?php echo $dados[3] ?>"><?php echo $dados[3] ?></option>
+                                <?php
+                                $saidaDB->listarDepartamentos($id);
+                                ?>
+                            </select>
+                        </div>
                     </div>
+
                     <div class='form-group col-12'>
                         <label><strong>Produto</strong></label>
                         <input type='text' class='form-control' name='saida_produtoE' value="<?php echo $dados[4] ?>">
                     </div>
+
                     <div class='form-group col-12'>
                         <label><strong>Observação</strong></label>
                         <input type='text' class='form-control' name='saida_observacaoE' value="<?php echo $dados[5] ?>">

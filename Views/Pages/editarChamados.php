@@ -62,38 +62,56 @@ if (isset($_SESSION['dados_chamado_E'])) {
                 unset($_SESSION['chamado_status']);
                 ?>
                 <section class='form-group col-12 row'>
-                    <label><strong>Data</strong></label>
-                    <div class='col-4'> <input type='number' class='form-control' name='chamado_diaE' min='1' max='31' value="<?php echo $dados[0] ?>"> </div>
-                    <div class='col-4'> <input type='number' class='form-control' name='chamado_mesE' min='1' max='12' value="<?php echo $dados[1] ?>"> </div>
-                    <div class='col-4'> <input type='number' class='form-control' name='chamado_anoE' min='1900' value="<?php echo $dados[2] ?>"> </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <label><strong>Data</strong></label>
+                            <div class='col-4'> <input type='number' class='form-control' name='chamado_diaE' min='1' max='31' value="<?php echo $dados[0] ?>"> </div>
+                            <div class='col-4'> <input type='number' class='form-control' name='chamado_mesE' min='1' max='12' value="<?php echo $dados[1] ?>"> </div>
+                            <div class='col-4'> <input type='number' class='form-control' name='chamado_anoE' min='1900' value="<?php echo $dados[2] ?>"> </div>
+                        </div>
                     </div>
-                    <div class='form-group col-12'>
-                        <label><strong>Departamento</strong></label>
-                        <select class="form-select" name="chamado_departamentoE" aria-label="Default select example">
-                            <option value="<?php echo $dados[3] ?>"><?php echo $dados[3] ?></option>
-                            <?php
-                            $chamadoDB->listarDepartamentos($id);
-                            ?>
-                        </select>
+
+                    <div class="col-md-6 col-sm-12">
+                        <div class='form-group col-12'>
+                            <label><strong>Departamento</strong></label>
+                            <select class="form-select" name="chamado_departamentoE" aria-label="Default select example">
+                                <option value="<?php echo $dados[3] ?>"><?php echo $dados[3] ?></option>
+                                <?php
+                                $chamadoDB->listarDepartamentos($id);
+                                ?>
+                            </select>
+                        </div>
                     </div>
-                    <div class='form-group col-12'>
-                        <label><strong>Produto</strong></label>
-                        <input type='text' class='form-control' name='chamado_produtoE' value="<?php echo $dados[4] ?>">
+
+                    <div class="col-12">
+                        <div class='form-group col-12'>
+                            <label><strong>Produto</strong></label>
+                            <input type='text' class='form-control' name='chamado_produtoE' value="<?php echo $dados[4] ?>">
+                        </div>
                     </div>
+
+                    <div class="col-12">
+                        <div class="col-12 row">
+                            <div class='col-md-8 col-sm-12'>
+                                <label><strong>Status</strong></label>
+                                <input type='text' disabled class='form-control' name='chamado_observacaoE' value="<?php echo $dados[6] ?>">
+                            </div>
+                            <div class='col-md-4 col-sm-12'>
+                                <div class="btn-acao"><button type="submit" name="btn_fechar_chamado" class="btn btn-dark" style="width: 100%; margin-top:10%;">Fechar Chamado</button></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class='form-group col-12'>
                         <label><strong>Observação</strong></label>
                         <input type='text' class='form-control' name='chamado_observacaoE' value="<?php echo $dados[5] ?>">
                     </div>
-                    <div class='form-group col-12'>
-                        <label><strong>Status</strong></label>
-                        <input type='text' disabled class='form-control' name='chamado_observacaoE' value="<?php echo $dados[6] ?>">
-                    </div>
                 </section>
         </section>
-        <div class="box-botoesAcao text-center col-12 row">
-            <div class="btn-acao"><a class="btn btn-danger" href="chamados.php">VOLTAR</a></div>
-            <div class="btn-acao"><button type="submit" name="editar_confirm" class="btn btn-success">SALVAR</button></div>
-            <div class="btn-acao"><button type="submit" name="btn_fechar_chamado" class="btn btn-dark">Fechar Chamado</button></div>
+        <div class="box-botoesAcao col-12 row">
+            <div class="col-6"><a class="btn btn-danger" href="chamados.php">VOLTAR</a></div>
+            <div class="col-6"><button type="submit" name="editar_confirm" class="btn btn-success">SALVAR</button></div>
         </div>
         </form>
     </main>

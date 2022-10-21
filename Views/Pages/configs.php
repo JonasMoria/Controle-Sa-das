@@ -37,7 +37,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
         </div>
         <hr>
 
-        <section class="col-12 row box-configs">
+        <section class="col-12 row box-configs minhaConta">
             <div class="col-6" style="margin-left: 20%;">
                 <?php
                 if (isset($_SESSION['update_cad_status']) && $_SESSION['update_cad_status'][0] == false) {
@@ -58,7 +58,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                 ?>
             </div>
 
-            <div class="minhaConta col-md-5 col-sm-10">
+            <div class="col-md-6 col-sm-12 mt-3">
                 <form action="../../Controllers/UsuarioController.php" method="post">
                     <div class="col-12 row">
                         <div class="col-12 text-center">
@@ -78,7 +78,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                 </form>
             </div>
 
-            <div class="minhaConta minhaContaSeg col-md-5 col-sm-10">
+            <div class="col-md-6 col-sm-12 mt-3">
                 <form action="../../Controllers/UsuarioController.php" method="post">
                     <div class="col-12 row">
                         <div class="col-12 text-center">
@@ -98,7 +98,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                 </form>
             </div>
 
-            <div class="minhaConta col-md-5 col-sm-10">
+            <div class="col-md-6 col-sm-12 mt-3">
                 <div class="col-12 row">
                     <div class="col-12 text-center">
                         <h5>Backup</h5>
@@ -113,7 +113,7 @@ $usuarioDB->getDadosUsuario($_SESSION['dados_usuario'][1]);
                 </div>
             </div>
 
-            <div class="minhaConta col-md-5 col-sm-10">
+            <div class="col-md-6 col-sm-12 mt-3">
                 <div class="col-12 row">
                     <div class="col-12 text-center">
                         <h5>Excluir Conta</h5>
