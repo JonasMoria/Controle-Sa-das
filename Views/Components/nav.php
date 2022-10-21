@@ -126,7 +126,7 @@
     var width = window.innerWidth;
     btnClose.style.display = 'none';
     btnOpen.style.display = 'none';
-    if (width < 500) {
+    if (width < 950) {
         menu.style.width = '0%';
         links.display = 'none';
         btnOpen.style.display = 'block';
