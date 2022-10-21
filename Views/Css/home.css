@@ -4,3 +4,59 @@
     width: 14%;
     font-weight: 700;
 }
+
+.box-Home {
+    border-radius: 10px;
+    box-shadow: 1px 3px 3px 3px gray;
+    padding: 2%;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.box-hora {
+    display: flex;
+    margin: 0 auto;
+}
+.usu-saudacao {
+    float: left;
+}
+.data-hora {
+    padding-top: 1%;
+    padding-left: 30%;
+}
+.hora {
+    display: flex;
+    margin: 0 auto;
+}
+
+.chamados th {
+    color: orangered;
+}
+
+.chamados td {
+    color: black;
+    font-weight: 600;
+}
+
+.table {
+    width: 100%;
+}
+.td-obs{
+    width: 300px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .box-Home {
+        margin: 0px;
+        margin-left: 0px;
+        width: 100%;
+    }
+    .data-hora {
+        padding-top: 1%;
+        padding-left: 10%;
+    }
+    .table {
+        overflow-x: scroll;
+    }
+}
