@@ -64,7 +64,7 @@ class SaidaDB
             do {
 
                 $Id   =  $list['sai_id'];
-                $data =  $list['sai_data'];
+                $data =  date('d/m/Y',  strtotime($list['sai_data']));
                 $departamento = $list['sai_departamento'];
                 $produto = $list['sai_produto'];
                 $observacao = $list['sai_observacao'];
@@ -107,7 +107,7 @@ class SaidaDB
             do {
 
                 $Id   =  $list['sai_id'];
-                $data =  $list['sai_data'];
+                $data = date('d/m/Y',  strtotime($list['sai_data']));
                 $departamento = $list['sai_departamento'];
                 $produto = $list['sai_produto'];
                 $observacao = $list['sai_observacao'];
@@ -152,7 +152,7 @@ class SaidaDB
             do {
 
                 $Id   =  $list['sai_id'];
-                $data =  $list['sai_data'];
+                $data = date('d/m/Y',  strtotime($list['sai_data']));
                 $departamento = $list['sai_departamento'];
                 $produto = $list['sai_produto'];
                 $observacao = $list['sai_observacao'];
@@ -195,7 +195,7 @@ class SaidaDB
             do {
 
                 $Id   =  $list['sai_id'];
-                $data =  $list['sai_data'];
+                $data = date('d/m/Y',  strtotime($list['sai_data']));
                 $departamento = $list['sai_departamento'];
                 $produto = $list['sai_produto'];
                 $observacao = $list['sai_observacao'];
@@ -238,7 +238,7 @@ class SaidaDB
             do {
 
                 $Id   =  $list['sai_id'];
-                $data =  $list['sai_data'];
+                $data = date('d/m/Y',  strtotime($list['sai_data']));
                 $departamento = $list['sai_departamento'];
                 $produto = $list['sai_produto'];
                 $observacao = $list['sai_observacao'];
@@ -281,7 +281,7 @@ class SaidaDB
                 do {
 
                     $Id   =  $list['sai_id'];
-                    $data =  $list['sai_data'];
+                    $data = date('d/m/Y',  strtotime($list['sai_data']));
                     $departamento = $list['sai_departamento'];
                     $produto = $list['sai_produto'];
                     $observacao = $list['sai_observacao'];
@@ -331,7 +331,7 @@ class SaidaDB
                 do {
 
                     $Id   =  $list['sai_id'];
-                    $data =  $list['sai_data'];
+                    $data = date('d/m/Y',  strtotime($list['sai_data']));
                     $departamento = $list['sai_departamento'];
                     $produto = $list['sai_produto'];
                     $observacao = $list['sai_observacao'];
@@ -381,7 +381,7 @@ class SaidaDB
                 do {
 
                     $Id   =  $list['sai_id'];
-                    $data =  $list['sai_data'];
+                    $data = date('d/m/Y',  strtotime($list['sai_data']));
                     $departamento = $list['sai_departamento'];
                     $produto = $list['sai_produto'];
                     $observacao = $list['sai_observacao'];
@@ -431,7 +431,7 @@ class SaidaDB
                 do {
 
                     $Id   =  $list['sai_id'];
-                    $data =  $list['sai_data'];
+                    $data = date('d/m/Y',  strtotime($list['sai_data']));
                     $departamento = $list['sai_departamento'];
                     $produto = $list['sai_produto'];
                     $observacao = $list['sai_observacao'];
@@ -481,7 +481,7 @@ class SaidaDB
                 do {
 
                     $Id   =  $list['sai_id'];
-                    $data =  $list['sai_data'];
+                    $data = date('d/m/Y',  strtotime($list['sai_data']));
                     $departamento = $list['sai_departamento'];
                     $produto = $list['sai_produto'];
                     $observacao = $list['sai_observacao'];
