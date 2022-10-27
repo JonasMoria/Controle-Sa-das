@@ -77,3 +77,10 @@ body {
     transition: 0.5s;
     background-color: green !important;
 }
+
+@media screen and (max-width: 600px) {
+    .button {
+        margin-top: 10%;
+        width: 100%;
+    }
+}
